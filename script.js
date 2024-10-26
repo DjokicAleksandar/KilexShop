@@ -87,17 +87,33 @@ const addDataToHTML = () => {
     listProductHTML.innerHTML = '';
     if (listProduct.length > 0)
     {
+        let windowWidth = window.innerWidth;
+
         listProduct.forEach(product => {
             let newProduct = document.createElement('li');
             newProduct.classList.add('item');
             newProduct.dataset.id = product.id;
-            newProduct.innerHTML = `<a href="#" class="itemLink">
+
+            if (windowWidth < 600){
+                newProduct.innerHTML = `<a href="#" class="itemLink">
+                        <img src="${product.image}" class="itemImage" draggable="false">
+                    </a>
+                    <p class="itemBadge"> Trepavice </p>
+                    <h2 class="itemName"> ${product.name} </h2>
+                    <h3 class="itemPrice"> ${product.price} RSD </h3>
+                    <button class="addToCartButton"> DODAJ U KORPU </button>
+                    <div class="productStripe">  </div>`;
+            }
+            else{
+                newProduct.innerHTML = `<a href="#" class="itemLink">
                         <img src="${product.image}" class="itemImage" draggable="false">
                     </a>
                     <p class="itemBadge"> Trepavice </p>
                     <h2 class="itemName"> ${product.name} </h2>
                     <h3 class="itemPrice"> ${product.price} RSD </h3>
                     <button class="addToCartButton"> DODAJ U KORPU </button>`;
+            }
+            
                     
             listProductHTML.appendChild(newProduct)
         })
@@ -155,28 +171,37 @@ const addCartToHTML = () => {
 
             let formattedPrice = itemTotalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
 
-            newCart.innerHTML = `<div class="cartItemImage">
-                            <img src="${info.image}" width="50px" height="50px">
-                        </div>
-                        <div class="cartItemName">
-                            ${info.name}
-                        </div>
-                        <div class="cartItemTotal">
-                            ${formattedPrice} RSD
-                        </div>
-                        <div class="quantity">
-                            <div class="minus"> - </div>
-                            <div class="quantityNumber"> ${cart.quantity} </div>
-                            <div class="plus"> + </div>
-                        </div>`;
-                
+            newCart.innerHTML = 
+                    `
+                <div class="itemInfo">
+                    <div class="cartItemImage">
+                        <img src="${info.image}" width="50px" height="50px">
+                    </div>
+                    <div class="cartItemName">
+                        ${info.name}
+                    </div>
+                    <div class="cartItemTotal">
+                        ${formattedPrice} RSD
+                    </div>
+                    <div class="quantity">
+                        <div class="minus"> - </div>
+                        <div class="quantityNumber"> ${cart.quantity} </div>
+                        <div class="plus"> + </div>
+                    </div>
+                </div>
+
+                <div class="bottomStripe">  </div>
+                    `;
+            
             listCartHTML.appendChild(newCart);
         })
         emptyCart.style.display = 'none'; //cart is empty text
+        document.querySelector(".price").classList.add("priceVisible");
         cartIsEmpty = false;//////////////
     }
     else{
         emptyCart.style.display = 'block'; //cart is empty text
+        document.querySelector(".price").classList.remove("priceVisible");
         cartIsEmpty = true;///////////////
     }
     iconCartNumber.innerText = totalQuantity;
@@ -204,7 +229,7 @@ listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus'))
     {
-        let productId = positionClick.parentElement.parentElement.dataset.id;
+        let productId = positionClick.parentElement.parentElement.parentElement.dataset.id;
         let type = 'minus';
         if (positionClick.classList.contains('plus')){
             type = 'plus';
@@ -243,6 +268,9 @@ listProductHTML.addEventListener('click', (event) => {
     if (positionClick.classList.contains('addToCartButton')){
         let productId = positionClick.parentElement.dataset.id;
         addToCart(productId);
+        
+        popUp.classList.add("show");
+        popUp.classList.remove("hide");
     }
 })
 
@@ -308,8 +336,13 @@ document.addEventListener("scroll", () => {
 
 //------------------
 
-let windowWidth = window.innerWidth;
+// menjanje boje whatsapp ikonice 
+/*const whatsapp = document.querySelector(".contact");
+const whatsappImage = document.querySelector(".contactImage");
 
-if (windowWidth < 600){
-   
-}
+whatsapp.addEventListener("mouseover", () => {
+    whatsappImage.setAttribute('src',"Images/whatsapp2.svg");
+})
+whatsapp.addEventListener("mouseout", () => {
+    whatsappImage.setAttribute('src',"Images/whatsappbela.svg");
+})*/

@@ -21,6 +21,7 @@ body{
     top: 0;
     left: 0;
     padding: 10px;
+    padding-left:20px;
     position: fixed;
     width: 100%;
     z-index: 100;
@@ -62,10 +63,12 @@ body{
     background-color: #b39167;
     border-radius: 50%;
     display: flex;
+    font-size: 12px;
+    padding: 7px;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    right: 0;
+    position: relative;
+    right: 5px;
     width: 15px;
     height: 15px;
 }
@@ -109,13 +112,19 @@ body{
     width: 100%;
     justify-content: center;
     align-items: center;
+    
 }
 
-.glavniText h1{
+.glavniText h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: center;  
+    font-size: 60px;
+    font-family: "Parisienne", cursive;
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal; 
 }
 
 .stripe{
@@ -137,7 +146,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 15px;
-    column-gap: 20px;
+    column-gap: 30px;
     overflow: hidden;
     scroll-behavior: smooth;
 }
@@ -145,14 +154,23 @@ body{
 .item{
     list-style: none;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: fit-content;
     min-height: min-content;
     background-color: #FFF;
-    border-bottom: 1px solid #0f0904;
     border-radius: 20px;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.productStripe{
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    background-color: #0f0904;
 }
 
 .item.visibleItem{
@@ -173,24 +191,12 @@ body{
     transition: .2s;
 }
 
-.itemLink::after{
-    content: "";
-    position: absolute;
-    border-radius: 20px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    /*background-color: rgba(255, 254, 203, 0.1);*/
-}
-
 .itemLink .itemImage{
     width: 100%;
     aspect-ratio: 16/7;
     object-fit: cover;
     border-radius: 12px;
-    filter: drop-shadow(0 50px 20px #0009);
+    filter: drop-shadow(0 20px 20px #0009);
 }
 
 .itemLink .itemBadge{
@@ -228,7 +234,7 @@ body{
     color: #FFFECB;
     background-color: #0f0904;
     font-size: 0.9rem; 
-    font-weight: 150;
+    font-weight: 400;
     cursor: pointer;
 }
 
@@ -255,6 +261,7 @@ body{
     position: absolute;
     width: max-content;
     min-width: 350px;
+    max-width: 100%;
     height: max-content;
     max-height: 600px;
     overflow: auto;
@@ -288,20 +295,21 @@ body{
     gap: 10px;
     bottom: 30px;
     right: 30px;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 8px;
+    border-radius: 16px;
     font-size: 1rem;
     font-weight: 400;
     opacity: 0;
-    transition: .3s;
+    background-color: #dab684;
+    transition: .2s;
 }
-
 .contact img{
-    height: 50px;
+    height: 48px;
 }
-
 .contact:hover{
-    background-color: #B39167;
+    background-color: #dab684cc;
+    scale:1.1;
+    transition: .2s;
 }
 
 .visibleContact{
@@ -345,11 +353,21 @@ body{
     color: #555;
 }
 
-.cartItem div{
+.bottomStripe{
+    width: 100%;
+    background-color: #0f0904;
+    height: 2px;
+}
+
+.cartItem .itemInfo{
+    display: flex;
+}
+
+.cartItemImage, .cartItemName, .cartItemTotal, .quantity{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    text-align: center;
 }
 
 .cartItem:nth-child(even){
@@ -358,9 +376,14 @@ body{
 
 .cartItem{
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+.itemInfo{
+    width: 100%;
+    display: flex;
     gap: 10px;
     text-align: center;
     padding: 10px;
@@ -372,6 +395,14 @@ body{
 
 .cartItemTotal{
     width: max-content;
+}
+
+.price{
+    display: none;
+}
+
+.price.priceVisible{
+    display: inline-block;
 }
 
 .openCartPageBtn{
