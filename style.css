@@ -115,6 +115,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .stripe{
@@ -146,7 +147,7 @@ body{
     padding: 10px;
     width: fit-content;
     min-height: min-content;
-    background-color: #FFFECB;
+    background-color: #FFF;
     border-bottom: 1px solid #0f0904;
     border-radius: 20px;
     opacity: 0;
@@ -281,15 +282,22 @@ body{
 
 .contact{
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     bottom: 30px;
     right: 30px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
+    font-size: 1rem;
     font-weight: 400;
-    background-color: #DAB684;
-    color: #0f0904;
     opacity: 0;
     transition: .3s;
+}
+
+.contact img{
+    height: 50px;
 }
 
 .contact:hover{

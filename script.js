@@ -286,15 +286,7 @@ document.addEventListener("scroll", () => {
 //--------------
 //menjanje teksta u kontaktu
 
-const poruke = ["Imate pitanja ?", "Kontaktirajte nas !"];
-let trenutnaPoruka = 0;
 
-function PromeniText(){
-    trenutnaPoruka = (trenutnaPoruka + 1) % poruke.length;
-    contact.textContent = poruke[trenutnaPoruka];
-}
-
-setInterval(PromeniText, 4000);
 
 //------------------
 //pokazivanje proizvoda
@@ -313,3 +305,11 @@ document.addEventListener("scroll", () => {
         }
     })
 })
+
+//------------------
+
+let windowWidth = window.innerWidth;
+
+if (windowWidth < 600){
+   
+}
