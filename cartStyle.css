@@ -65,10 +65,11 @@ body{
     font-size: large;
     width: 100%;
     height: 50px;
-    border-radius: 10px;
-    border-color: gold;
+    border-radius: 8px;
+    border-color: #dab684;
     transition: .2s;
     padding: 5px;
+    padding-left: 10px;
 }
 
 .email, .city, .adress, .posta, .phone{
@@ -81,10 +82,11 @@ body{
     font-size: large;
     width: 100%;
     height: 50px;
-    border-radius: 10px;
-    border-color: gold;
+    border-radius: 8px;
+    border-color: #dab684;
     transition: .2s;
     padding: 5px;
+    padding-left: 10px;
 }
 
 .paymentMethod{

@@ -17,6 +17,14 @@ body{
     background-color: #FFF;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.noScroll{
+    overflow: hidden;
+}
+
 .navbar{
     top: 0;
     left: 0;
@@ -44,11 +52,17 @@ body{
 
 .icoMenu{
     cursor: pointer;
+    user-select: none;
+}
+
+.logoNavBar{
+    user-select: none;
 }
 
 .icoCart{
     display: flex;
     cursor: pointer;
+    user-select: none;
 }
 
 .icoCartImage{
@@ -92,6 +106,7 @@ body{
     width: 100%;
     transform: translateX(100%);
     animation: slideIn 0.7s forwards ease-in-out;
+    user-select: none;
 }
 
 @keyframes slideIn {
@@ -112,7 +127,7 @@ body{
     width: 100%;
     justify-content: center;
     align-items: center;
-    
+    user-select: none;
 }
 
 .glavniText h2{
@@ -164,6 +179,7 @@ body{
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    user-select: none;
 }
 
 .productStripe{
@@ -225,17 +241,24 @@ body{
 
 .addToCartButton{
     border-radius: 12px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     margin-top: 10px;
     margin-bottom: 10px;
+    border: none;
     color: #FFFECB;
     background-color: #0f0904;
     font-size: 0.9rem; 
     font-weight: 400;
     cursor: pointer;
+    transition: .2s;
+}
+
+.addToCartButton:hover{
+    background-color: #1f1914;
+    transition: .2s;
 }
 
 .items.dragging .item{
@@ -260,8 +283,9 @@ body{
 }
 
 .popUpCart .cartContent{
+    position: relative;
     width: max-content;
-    padding: 10px; 
+    padding: 20px; 
     max-height: 70vh;
     gap: 10px;
     border-radius: 20px;  
@@ -271,6 +295,44 @@ body{
     align-items: center;
     flex-direction: column;
     box-sizing: border-box;
+}
+
+.close{
+    position: absolute;
+    right: 0;
+    top: -25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.close:hover{
+    text-decoration: underline;
+    text-decoration-color: #dab684;
+}
+
+.close img{
+    height: 100%;
+    width: 25px;
+}
+
+.close p{
+    color: #dab684;
+    font-weight: 250;
+    font-size: 18px;
+}
+
+.vasaKorpa{
+    white-space: nowrap;
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid #0f0904;
+}
+
+.vasaKorpa h2{
+    font-weight: 300;
 }
 
 .cartContent h2{
@@ -303,18 +365,17 @@ body{
     font-weight: 400;
     cursor:auto;
     opacity: 0;
-    background-color: #dab684;
-    transition: .2s;
+    background-color: transparent;
+    transition: .3s;
 }
 
-.contact img{
-    height: 48px;
+.contact .contactImage{
+    height: 52px;
 }
 
 .contact:hover{
-    background-color: #dab684cc;
-    scale:1.1;
-    transition: .2s;
+    scale:1.2;
+    transition: .3s;
 }
 
 .visibleContact{
@@ -343,13 +404,24 @@ body{
     align-items: center;
 }
 
+.quantity{
+    border: 1px solid #B39167;
+    padding: 2px;
+    width: max-content;
+    border-radius: 30px;
+}
+
 .quantity div{
     display: inline-block;
     width: 25px;
     height: 25px;
-    background-color: #555;
-    color: white;
+    background-color: #dab684;
     border-radius: 50%;
+}
+
+.quantity div:nth-child(2){
+    background-color: transparent;
+    color: #0f0904;
 }
 
 .minus, .plus{
@@ -357,12 +429,9 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: white;
 }
 
-.quantity div:nth-child(2){
-    background-color: transparent;
-    color: #555;
-}
 
 .bottomStripe{
     width: 100%;
@@ -383,7 +452,6 @@ body{
 
 .cartItem{
     width: 100%;
-    padding: 5px;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -411,14 +479,20 @@ body{
 
 .price{
     padding: 10px;
-    margin-top: 10px;
+    padding-bottom: 20px;
+    width: 90%;
+    border-bottom: 1px solid #0f0904;
     display: none;
-    width: 100%;
     text-align: center;
+}
+
+.price h3{
+    font-weight: 500;
 }
 
 #totalPrice{
     margin-left: 5px;
+    white-space: nowrap;
 }
 
 .price.priceVisible{
@@ -427,30 +501,52 @@ body{
     justify-content: center;
 }
 
+.cartButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .openCartPageBtn{
-    border-radius: 25px;
-    font-size: large;
-    font-weight: 500;
-    padding: 10px;
+    background-color: #0f0904;
+    border: 2px solid #0f0904;
+    color: #FFFECB;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.continueBtn{
+    border: 2px solid #B39167;
+    background-color: #dab684;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 10px 20px;
     margin: 20px;
     cursor: pointer;
 }
 
 /* Stil za skrolbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    display: none;
+    width: 6px;
 }
 
-/* (pozadina skrolbara) */
+/* pozadina skrolbara */
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px; 
 }
 
-/* (klizac skrolbara) */
+/* klizac skrolbara */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #bcbbbb;
     border-radius: 10px; 
 }
 
@@ -505,9 +601,21 @@ body{
         font-size: 12px;
     }
 
+    .close img{
+        height: 20px;
+    }
+
+    .close p{
+        font-size: 14px;
+    }
+
+    .vasaKorpa{
+        font-size: 14px;
+    }
+
     .popUpCart .cartContent{
         width: max-content;
-        padding: 20px; 
+        padding: 20px 30px; 
         max-height: 70vh;
         gap: 10px;
         border-radius: 20px;  
@@ -523,7 +631,7 @@ body{
         display: grid;
         overflow-y: auto;
         grid-template-columns: 1fr;
-        width: 80%;
+        width: 90%;
         gap: 10px;
         justify-content: center;
         align-items: center;
@@ -531,7 +639,7 @@ body{
     
     .cartItem{
         width: 100%;
-        gap: 20px;
+        gap: 10px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -544,9 +652,32 @@ body{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 10px;
         text-align: center;
         padding: 10px;
+    }
+
+    .price{
+        font-size: 13px;
+    }
+
+    .cartButtons{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .cartButtons button{
+        white-space: nowrap;
+        font-size: 13px;
+        margin: 10px;
+        width: 100%;
+    }
+    
+    .contact .contactImage{
+        height: 44px;
     }
 }
 

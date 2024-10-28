@@ -50,17 +50,33 @@ const emptyCart = document.querySelector(".emptyCart");
 const cartBtn = document.querySelector(".icoCart");
 const popUp = document.querySelector(".popUpCart");
 const cartContent = document.querySelector(".cartContent");
+const continueBtn = document.querySelector(".continueBtn");
+const closeX = document.querySelector(".close");
 
 //prikazi
 cartBtn.addEventListener("click", () => {
     popUp.classList.add("show");
     popUp.classList.remove("hide");
+    document.body.classList.add('noScroll');
 })
 
 //sakrij
 popUp.addEventListener("click", (e) => {
     popUp.classList.add("hide")
     popUp.classList.remove("show");
+    document.body.classList.remove('noScroll');
+})
+
+continueBtn.addEventListener("click", () => {
+    popUp.classList.add("hide");
+    popUp.classList.remove("show");
+    document.body.classList.remove('noScroll');
+})
+
+closeX.addEventListener("click", () => {
+    popUp.classList.add("hide")
+    popUp.classList.remove("show");
+    document.body.classList.remove('noScroll');
 })
 
 cartContent.addEventListener("click", (e) => {
@@ -271,6 +287,7 @@ listProductHTML.addEventListener('click', (event) => {
         
         popUp.classList.add("show");
         popUp.classList.remove("hide");
+        document.body.classList.add("noScroll");
     }
 })
 
@@ -318,6 +335,25 @@ document.addEventListener("scroll", () => {
 
 //------------------
 //pokazivanje proizvoda
+
+//chatgpt
+document.addEventListener("DOMContentLoaded", () => {
+    const proizvodi = document.querySelectorAll(".item");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visibleItem");
+            } else {
+                entry.target.classList.remove("visibleItem");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    proizvodi.forEach(proizvod => {
+        observer.observe(proizvod);
+    });
+});
 
 document.addEventListener("scroll", () => {
     const proizvodi = document.querySelectorAll(".item");
