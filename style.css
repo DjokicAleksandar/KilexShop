@@ -468,6 +468,10 @@ body{
 }
 
 @media screen and (max-width: 600px) {
+    .glavniText h2{
+        font-size: 32px;
+    }
+    
     .items{
        grid-template-columns: repeat(1, 1fr);
     }
@@ -543,5 +547,15 @@ body{
         gap: 20px;
         text-align: center;
         padding: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .glavniText{
+        gap: 5px;
+    }
+    
+    .glavniText h2{
+        font-size: 25px;
     }
 }
