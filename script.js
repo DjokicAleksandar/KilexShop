@@ -81,13 +81,13 @@ let iconCartNumber = document.querySelector(".cartNumber");
 let totalPrice = document.querySelector("#totalPrice");
 let listProduct = [];
 let carts = [];
+let windowWidth = window.innerWidth;
 
 //svi proizvodi
 const addDataToHTML = () => {
     listProductHTML.innerHTML = '';
     if (listProduct.length > 0)
     {
-        let windowWidth = window.innerWidth;
 
         listProduct.forEach(product => {
             let newProduct = document.createElement('li');
@@ -170,12 +170,12 @@ const addCartToHTML = () => {
             totalPriceValue += itemTotalPrice;
 
             let formattedPrice = itemTotalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
-
+            
             newCart.innerHTML = 
                     `
                 <div class="itemInfo">
                     <div class="cartItemImage">
-                        <img src="${info.image}" width="50px" height="50px">
+                        <img src="${info.image}" height="50px">
                     </div>
                     <div class="cartItemName">
                         ${info.name}
@@ -184,9 +184,9 @@ const addCartToHTML = () => {
                         ${formattedPrice} RSD
                     </div>
                     <div class="quantity">
-                        <div class="minus"> - </div>
+                        <div class="minus">-</div>
                         <div class="quantityNumber"> ${cart.quantity} </div>
-                        <div class="plus"> + </div>
+                        <div class="plus">+</div>
                     </div>
                 </div>
 
@@ -335,14 +335,3 @@ document.addEventListener("scroll", () => {
 })
 
 //------------------
-
-// menjanje boje whatsapp ikonice 
-/*const whatsapp = document.querySelector(".contact");
-const whatsappImage = document.querySelector(".contactImage");
-
-whatsapp.addEventListener("mouseover", () => {
-    whatsappImage.setAttribute('src',"Images/whatsapp2.svg");
-})
-whatsapp.addEventListener("mouseout", () => {
-    whatsappImage.setAttribute('src',"Images/whatsappbela.svg");
-})*/
