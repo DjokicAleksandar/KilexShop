@@ -288,7 +288,7 @@ body::-webkit-scrollbar {
     padding: 20px; 
     max-height: 70vh;
     gap: 10px;
-    border-radius: 20px;  
+      
     background-color: white;
     display: flex;
     justify-content: center;
@@ -512,7 +512,7 @@ body::-webkit-scrollbar {
     border: 2px solid #0f0904;
     color: #FFFECB;
     text-align: center;
-    border-radius: 12px;
+    
     font-weight: 400;
     font-size: 1rem;
     padding: 10px 20px;
@@ -525,7 +525,7 @@ body::-webkit-scrollbar {
     background-color: #dab684;
     color: white;
     text-align: center;
-    border-radius: 12px;
+    
     font-weight: 400;
     font-size: 1rem;
     padding: 10px 20px;
