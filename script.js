@@ -1,3 +1,13 @@
+//loader
+
+window.onload = () => {
+    const loadingScreen = document.getElementById("loader");
+    loadingScreen.style.display = 'none';
+}
+
+//------
+//ucitavanje slike i njen offset
+
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
@@ -9,44 +19,10 @@ window.addEventListener("load", function(){
 
 //--------------------
 
-const items = document.querySelector(".items");
-const arrowBtn = document.querySelectorAll(".shop i")
-const firstCardWidth = items.querySelector(".item").offsetWidth;
-
-let isDragging = false, startX, startScrollLeft;
-
-arrowBtn.forEach(btn => {
-    btn.addEventListener("click", () => {
-        items.scrollLeft += btn.id === "left" ? -(firstCardWidth+15) : firstCardWidth+15;
-    })
-})
-
-const dragStart = (e) => {
-    isDragging = true;
-    items.classList.add("dragging");
-
-    startX = e.pageX;
-    startScrollLeft = items.scrollLeft;
-}
-
-const dragStop = () => {
-    isDragging = false;
-    items.classList.remove("dragging");
-}
-
-const dragging = (e) => {
-    if (!isDragging) return;
-    items.scrollLeft = startScrollLeft - (e.pageX - startX);
-}
-
-items.addEventListener("mousedown", dragStart);
-items.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-
 //------------------
+//otvaranje i zatvaranje korpe
 
 const emptyCart = document.querySelector(".emptyCart");
-
 const cartBtn = document.querySelector(".icoCart");
 const popUp = document.querySelector(".popUpCart");
 const cartContent = document.querySelector(".cartContent");
