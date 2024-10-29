@@ -338,22 +338,24 @@ document.addEventListener("scroll", () => {
 
 //chatgpt
 document.addEventListener("DOMContentLoaded", () => {
-    const proizvodi = document.querySelectorAll(".item");
+    setTimeout(() => {
+        const proizvodi = document.querySelectorAll(".item");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visibleItem");
+        proizvodi.forEach(proizvod => {
+            const box = proizvod.getBoundingClientRect();
+            if (box.top <= window.innerHeight) {
+                proizvod.classList.add("visibleItem");
+                console.log("da");
             } else {
-                entry.target.classList.remove("visibleItem");
+                proizvod.classList.remove("visibleItem");
+                console.log("ne");
             }
         });
-    }, { threshold: 0.1 });
-
-    proizvodi.forEach(proizvod => {
-        observer.observe(proizvod);
-    });
+    }, 100); // Kašnjenje od 100ms
 });
+
+
+//---------
 
 document.addEventListener("scroll", () => {
     const proizvodi = document.querySelectorAll(".item");
