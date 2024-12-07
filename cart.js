@@ -160,6 +160,12 @@ function Validate()
 
 const icoMenu = document.querySelector(".icoMenu");
 
-icoMenu.addEventListener("click", function(){
+icoMenu.addEventListener("click", () => {
+    window.location.href = "index.html";
+})
+
+const cartIcon = document.querySelector(".icoCart");
+
+cartIcon.addEventListener("click", () => {
     window.location.href = "index.html";
 })

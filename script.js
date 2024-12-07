@@ -7,6 +7,7 @@ window.onload = () => {
 
 //------
 //ucitavanje slike i njen offset
+//obrisi sve
 
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
@@ -80,14 +81,16 @@ const addDataToHTML = () => {
     listProductHTML.innerHTML = '';
     if (listProduct.length > 0)
     {
+        let i = 0;
 
         listProduct.forEach(product => {
+            i = i + 1;
             let newProduct = document.createElement('li');
             newProduct.classList.add('item');
             newProduct.dataset.id = product.id;
 
             if (windowWidth < 600){
-                newProduct.innerHTML = `<a href="#" class="itemLink">
+                newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
                         <img src="${product.image}" class="itemImage" draggable="false">
                     </a>
                     <p class="itemBadge"> Trepavice </p>
@@ -97,7 +100,7 @@ const addDataToHTML = () => {
                     <div class="productStripe">  </div>`;
             }
             else{
-                newProduct.innerHTML = `<a href="#" class="itemLink">
+                newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
                         <img src="${product.image}" class="itemImage" draggable="false">
                     </a>
                     <p class="itemBadge"> Trepavice </p>
@@ -349,3 +352,64 @@ document.addEventListener("scroll", () => {
 })
 
 //------------------
+//DODAVANJE SLIKA ZA SVAKU TREPAVICU I SLAJDERI
+//SEKI
+
+document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!!!!!
+    const popUpProduct = document.querySelector('.popUpProduct');
+    const popUpContent = document.querySelector('.popUpProductContent');
+    const sliderImages = document.querySelectorAll('.slider img');
+    const sliderNavLinks = document.querySelectorAll('.sliderNav a');
+    const productName = document.querySelector('.productName');
+    const closeSecond = document.querySelector('.closeSecond');
+
+    const productMap = {
+        LI1: {
+            name: 'Trepavice K2',
+            images: ['Images/Eyelash/K2-Kutija.jpg', 'Images/Eyelash/K2-Cela.jpg', 'Images/Eyelash/K2-Obe.jpg']
+        }
+    };
+
+    document.querySelectorAll('.itemLink').forEach(link => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log('aca');
+
+            const linkId = link.id;
+            const eyelash = productMap[linkId];
+
+            if (eyelash) {
+                sliderImages.forEach((img, index) => {
+                  img.src = eyelash.images[index];  
+
+                  productName.textContent = eyelash.name;
+                });
+
+                //prikaz 
+                popUpProduct.classList.add("show");
+                popUpProduct.classList.remove("hide");
+                document.body.classList.add('noScroll');
+
+                //onemoguci scroll pozadine
+                document.body.classList.add('noScroll');
+
+                //onemoguci kliktanje pozadine
+                popUpContent.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                })
+            }
+        })
+
+        popUpProduct.addEventListener("click", (e) => {
+            popUpProduct.classList.add("hide")
+            popUpProduct.classList.remove("show");
+            document.body.classList.remove('noScroll');
+        })
+
+        closeSecond.addEventListener("click", () => {
+            popUpProduct.classList.add("hide")
+            popUpProduct.classList.remove("show");
+            document.body.classList.remove('noScroll');
+        })
+    })
+})

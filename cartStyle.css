@@ -17,14 +17,38 @@ body{
     top: 0;
     left: 0;
     padding: 10px;
+    padding-left:20px;
     position: fixed;
     width: 100%;
     z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #262424;
-    transition: .4s;
+    background-color: #0f0904;
+    transform: translateY(-100%);
+    animation: slideDown 1s forwards ease-in-out;
+}
+
+.icoMenu, .icoCart{
+    cursor: pointer;
+    user-select: none;
+}
+
+.icoMenuImage, .icoCartImage{
+    transition: .3s;
+}
+
+.icoMenuImage:hover, .icoCartImage:hover{
+    transform: scale(1.1);
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%); /* Početna pozicija van ekrana */
+    }
+    100% {
+        transform: translateY(0); /* Krajnja pozicija, meni na ekranu */
+    }
 }
 
 .container{
@@ -153,5 +177,22 @@ body{
     .container{
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .logoNavBar img{
+        height: 40px;
+        width: 50px;
+    }
+
+    .icoMenu img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .icoCart img{
+        width: 25px;
+        height: 25px;
     }
 }
