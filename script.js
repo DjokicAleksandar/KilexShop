@@ -361,7 +361,7 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
 
     const productMap = {
         LI1: {
-            name: 'Trepavice K2',
+            //name: 'Trepavice K2',
             images: ['Images/Eyelash/K2-Kutija.jpg', 'Images/Eyelash/K2-Cela.jpg', 'Images/Eyelash/K2-Obe.jpg']
         }
     };
@@ -378,7 +378,7 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
                 sliderImages.forEach((img, index) => {
                   img.src = eyelash.images[index];  
 
-                  productName.textContent = eyelash.name;
+                  //productName.textContent = eyelash.name;
                 });
 
                 //prikaz 
@@ -409,3 +409,22 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
         })
     })
 })
+
+//MENJANJE TACKICA ISPOD SLIKE
+
+const slider = document.querySelector('.slider');
+const navDots = document.querySelectorAll('.sliderNav a');
+
+function updateActiveDot() {
+    const sliderWidth = slider.scrollWidth / slider.childElementCount;
+    const scrollLeft = slider.scrollLeft;
+    const activeIndex = Math.round(scrollLeft / sliderWidth);
+
+    navDots.forEach(dot => dot.classList.remove('active'));
+
+    navDots[activeIndex].classList.add('active');
+}
+
+slider.addEventListener('scroll', updateActiveDot);
+
+updateActiveDot();
