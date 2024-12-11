@@ -6,16 +6,11 @@ window.onload = () => {
 }
 
 //------
-//ucitavanje slike i njen offset
-//obrisi sve
+//offset slike
 
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
-})
-
-window.addEventListener("load", function(){
-    document.querySelector(".velikaSlika").style.right = "0";
 })
 
 //--------------------
@@ -106,7 +101,8 @@ const addDataToHTML = () => {
                     <p class="itemBadge"> Trepavice </p>
                     <h2 class="itemName"> ${product.name} </h2>
                     <h3 class="itemPrice"> ${product.price} RSD </h3>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>`;
+                    <button class="addToCartButton"> DODAJ U KORPU </button>
+                    <div class="productStripe">  </div>`;
             }
             
                     
@@ -330,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("ne");
             }
         });
-    }, 100); // Kašnjenje od 100ms
+    }, 500); // Kašnjenje od 500ms
 });
 
 
