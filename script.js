@@ -362,7 +362,7 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
     const productMap = {
         LI1: {
             //name: 'Trepavice K2',
-            images: ['Images/Eyelash/K2-Kutija.jpg', 'Images/Eyelash/K2-Cela.jpg', 'Images/Eyelash/K2-Obe.jpg']
+            images: ['Images/Eyelash/K2-Kutija - Copy.jpg', 'Images/Eyelash/K2-Cela - Copy.jpg', 'Images/Eyelash/K2-Obe - Copy.jpg']
         }
     };
 
