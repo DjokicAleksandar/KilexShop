@@ -142,8 +142,34 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
-.velikaSlika{
+.sliderNaslovne{
     width: 100%;
+    display: flex;  
+    animation: slideNaslovne 15s infinite;
+}
+
+@keyframes slideNaslovne {
+    0%{
+        transform: translateX(0);
+    }
+    40%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    90%{
+        transform: translateX(-100%)
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+.sliderNaslovne img{
+    width: 100%;
+    flex: 1 0 100%;
+    flex-shrink: auto;
     /*transform: translateX(100%);
     animation: slideIn 0.7s forwards ease-in-out;*/
     user-select: none;

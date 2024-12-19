@@ -8,20 +8,24 @@ window.onload = () => {
 //slika za fon
 
 function promeniSliku(){
-    const slika = document.querySelector(".velikaSlika");
+    const slikaPrva = document.querySelector("#prvaVelikaSlika");
+    const slikaDruga = document.querySelector("#drugaVelikaSlika");
+
     if (window.innerWidth <= 600){
-        console.log("aca");
-        slika.src = 'Images/naslovnaSlika.JPG';
+        slikaPrva.src = 'Images/naslovnaSlika.JPG';
+        slikaDruga.src = 'Images/naslovnaSlika2.JPG';
     }
     else{
-        slika.src = 'Images/slika1.png';
+        slikaPrva.src = 'Images/slika1.png';
+        slikaDruga.src = 'Images/slika1.png';
     }
 }
 
-window.addEventListener('load', promeniSliku);
-window.addEventListener('resize', promeniSliku);
+window.addEventListener("DOMContentLoaded", promeniSliku);
+window.addEventListener("resize", promeniSliku);
 
 //-------
+
 //offset slike
 
 window.addEventListener("DOMContentLoaded", function(){
@@ -418,11 +422,11 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
             document.body.classList.remove('noScroll');
         })
 
-        closeSecond.addEventListener("click", () => {
-            popUpProduct.classList.add("hide")
-            popUpProduct.classList.remove("show");
-            document.body.classList.remove('noScroll');
-        })
+        //closeSecond.addEventListener("click", () => {
+        //    popUpProduct.classList.add("hide")
+        //    popUpProduct.classList.remove("show");
+        //    document.body.classList.remove('noScroll');
+        //})
     })
 })
 
