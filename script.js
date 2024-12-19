@@ -1,11 +1,27 @@
 //loader
-
 window.onload = () => {
     const loadingScreen = document.getElementById("loader");
     loadingScreen.style.display = 'none';
 }
 
 //------
+//slika za fon
+
+function promeniSliku(){
+    const slika = document.querySelector(".velikaSlika");
+    if (window.innerWidth <= 600){
+        console.log("aca");
+        slika.src = 'Images/naslovnaSlika.JPG';
+    }
+    else{
+        slika.src = 'Images/slika1.png';
+    }
+}
+
+window.addEventListener('load', promeniSliku);
+window.addEventListener('resize', promeniSliku);
+
+//-------
 //offset slike
 
 window.addEventListener("DOMContentLoaded", function(){
