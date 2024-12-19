@@ -16,7 +16,7 @@ if (selectedProducts && selectedProducts.length > 0)
 
         let newProduct = document.createElement("tr");
         newProduct.innerHTML = `
-        <td class="product"> ${productName} x ${product.quantity} </td>
+        <td class="product" id="product"> ${productName} x <b> ${product.quantity} </b> </td>
         <td> ${totalItemPrice} RSD </td>
         `;
         productList.appendChild(newProduct);
@@ -31,6 +31,14 @@ if (selectedProducts && selectedProducts.length > 0)
     `;    
 
     productList.appendChild(lastRow);
+
+    let dostava = document.createElement("tr");
+    dostava.innerHTML = `
+    <td> <b> Dostava </b> </td>
+    <td> <b> Isporuka kurirkom službom </b> </td>
+    `;
+
+    productList.appendChild(dostava);
 }
 else{
 
@@ -57,9 +65,23 @@ productElements.forEach(function(element){
 })
 
 let productNamesFormated = productNames.join(', ');
-console.log(productNamesFormated)
 
 //------------------
+
+//base64 za sliku
+function convertImageToBase64(imagePath, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+            callback(reader.result);
+        };
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', imagePath);
+    xhr.responseType = 'blob';
+    xhr.send();
+}
 
 //validation
 
@@ -72,22 +94,12 @@ function Validate()
     let city = document.querySelector("#city").value.trim();
     let adress = document.querySelector("#adress").value.trim();
     let posta = document.querySelector("#posta").value.trim();
-    let radio = document.getElementsByName("paymentMethod");
-    let selectedRadioValue = '';
-
-    //check selected radio button
-    for (let i = 0; i < radio.length; i++) {
-        if (radio[i].checked) {
-            selectedRadioValue = radio[i].value;
-            break;
-        }
-    }
 
     document.querySelector(".firstNameError").textContent = "";
     document.querySelector(".lastNameError").textContent = "";
     document.querySelector(".emailError").textContent = "";
     document.querySelector(".phoneError").textContent = "";
-    document.querySelector(".paymentError").textContent = "";
+    document.querySelector(".cityError").textContent = "";
 
     let isValid = true;
 
@@ -117,13 +129,11 @@ function Validate()
         isValid = false;
     }
 
-    if(selectedRadioValue == '')
+    if(city === "")
     {
-        document.querySelector(".paymentError").textContent = "Morate odabrati nacin placanja!";
+        document.querySelector(".cityError").textContent = "Morate popuniti ovo polje!";
         isValid = false;
     }
-
-    console.log(selectedRadioValue)
 
     if(isValid)
     {
@@ -139,19 +149,24 @@ function Validate()
         emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
           alert("Porudzbina poslata!" + res.status);
         })
-
+        
         let paramsForUser = {
+            data: "https://imgur.com/gCC2Me2", //NE RADI!!!!
             from_name: "Kilex - Store",
             buyerName: firstName + " " + lastName,
             productName: productNamesFormated,
             buyerEmail: email,
             buyerAdress: adress + ", " + posta + ", " + city,
-            paymentMethod: selectedRadioValue,
-            totalPrice: totalPrice + "RSD"
-        }
-        emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res){
-            alert("Poslat email korisniku!" + res.status);
-        })
+            totalPrice: totalPrice + " RSD"
+        };
+
+        console.log(paramsForUser.data);
+    
+        emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
+            alert("Poslat email korisniku! Status: " + res.status);
+        }).catch(function (err) {
+            console.error("Greška prilikom slanja email-a:", err);
+        });
     }
 }
 
