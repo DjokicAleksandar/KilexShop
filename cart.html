@@ -26,7 +26,7 @@
     <div class="navbar">
         <div class="icoMenu"> <img src="Images/menu1.png" class="icoMenuImage" width="40px" height="40px"> </div>
         <div class="logoNavBar"> <img src="Images/logoTransparent.png" class="logoNavBarImage" width="70px" height="55px"> </div>
-        <div class="icoCart"> <img src="Images/backArrow.png" class="icoCartImage" width="30px" height="30px"> </div>
+        <div class="icoCart"> <img src="Images/backArrow.png" class="icoCartImage" width="40px" height="40px"> </div>
     </div>
 
     <div class="container">
@@ -63,6 +63,7 @@
             <div class="adress">
                 <h3>Ulica i kućni broj: *</h3>
                 <input type="text" id="adress">
+                <div class="adressError error"></div>
             </div>
             
             <div class="posta">
@@ -96,6 +97,34 @@
             <button class="order" onclick="Validate()"> Naručite </button>
         </div>
 
+    </div>
+
+    <div class="popUpPoslata">
+        <div class="popUpContent">
+            <div class="popUpNav">
+                <img src="Images/logoTransparent.png" width="50px">
+            </div>
+
+            <div class="popUpBody">
+                <h3> Vaša narudžbina je uspešno poslata, proverite email! </h3>
+
+                <button class="closeBtn" id="closeBtnPoslata"> Zatvori </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUpError">
+        <div class="popUpContent">
+            <div class="popUpNav">
+                <img src="Images/logoTransparent.png" width="50px">
+            </div>
+
+            <div class="popUpBody">
+                <h3> Došlo je do greške, pokušajte kasnije... </h3>
+
+                <button class="closeBtn" id="closeBtnError"> Zatvori </button>
+            </div>
+        </div>
     </div>
 
     <div class="footer">

@@ -13,6 +13,10 @@ body{
     min-height: 100vh;
 }
 
+.noScroll{
+    overflow: hidden;
+}
+
 .navbar{
     top: 0;
     left: 0;
@@ -103,6 +107,10 @@ body{
     padding-left: 10px;
 }
 
+.firstName h3, .lastName h3, .email h3, .city h3, .adress h3, .posta h3, .phone h3{
+    font-weight: 500;
+}
+
 .products{
     padding: 30px;
     width: 100%;
@@ -131,8 +139,12 @@ body{
     padding: 15px;
 }
 
+tbody{
+    border-bottom: 3px solid #dab684;
+}
+
 .productList .header{
-    font-size: x-large;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -169,10 +181,107 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 1.5rem; 
-    font-weight: 400;
+    font-weight: 500;
     border: none;
     transition: .2s;
 }
+
+/* Poruka nakon uspesne porudzbine */
+
+.popUpPoslata{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    top: -100%;
+    left: 0;
+    z-index: 1000;
+    transition: 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popUpPoslata.show{
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.popUpPoslata.hide{
+    top: -100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popUpContent{
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #dab684;
+}
+
+.popUpNav{
+    width: 100%;
+    background-color: #0f0904;
+    padding: 5px;
+    text-align: center;
+}
+
+.popUpBody{
+    background: #fff;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.popUpBody h3{
+    margin-top: 10px;
+}
+
+.popUpBody .closeBtn{
+    width: max-content;
+    font-size: 1rem;
+    padding: 5px 15px 5px 15px;
+    margin-bottom: 10px;
+    color: #FFFECB;
+    background-color: #0f0904;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* za error prozor */
+
+.popUpError{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    top: -100%;
+    left: 0;
+    z-index: 1000;
+    transition: 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popUpError.show{
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.popUpError.hide{
+    top: -100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* --------------- */
 
 .error{
     color: red;

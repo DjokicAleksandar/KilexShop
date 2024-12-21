@@ -83,10 +83,55 @@ function convertImageToBase64(imagePath, callback) {
     xhr.send();
 }
 
-//validation
+//popUp prozori nakon validacije
 
+const closeBtnPoslata = document.querySelector("#closeBtnPoslata");
+const closeBtnError = document.querySelector("#closeBtnError");
+
+const popUpPoslata = document.querySelector(".popUpPoslata");
+const popUpError = document.querySelector(".popUpError");
+
+closeBtnPoslata.addEventListener("click", () => {
+    popUpPoslata.classList.remove("show");
+    popUpPoslata.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+closeBtnError.addEventListener("click", () => {
+    popUpError.classList.remove("show");
+    popUpError.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+popUpPoslata.addEventListener("click", () => {
+    popUpPoslata.classList.remove("show");
+    popUpPoslata.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+popUpError.addEventListener("click", () => {
+    popUpError.classList.remove("show");
+    popUpError.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+document.body.classList.remove("noScroll");
+
+popUpPoslata.classList.remove("show");
+popUpPoslata.classList.add("hide");
+
+popUpError.classList.remove("show");
+popUpError.classList.add("hide");
+
+//validation
 function Validate()
 {
+    popUpPoslata.classList.remove("show");
+    popUpPoslata.classList.add("hide");
+    
+    popUpError.classList.remove("show");
+    popUpError.classList.add("hide");
+
     let firstName = document.querySelector("#firstName").value.trim();
     let lastName = document.querySelector("#lastName").value.trim();
     let email = document.querySelector("#email").value.trim();
@@ -135,6 +180,12 @@ function Validate()
         isValid = false;
     }
 
+    if(adress === "")
+    {
+        document.querySelector(".adressError").textContent = "Morate popuniti ovo polje";
+        isValid = false;
+    }
+
     if(isValid)
     {
         let paramsForSeki = {
@@ -146,12 +197,11 @@ function Validate()
             productName: productNamesFormated,
             totalPrice: totalPrice + "RSD"
         }
-        emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
-          alert("Porudzbina poslata!" + res.status);
-        })
+        //emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
+        //})
         
         let paramsForUser = {
-            data: "https://imgur.com/gCC2Me2", //NE RADI!!!!
+            data: "https://imgur.com/gCC2Me2.png",
             from_name: "Kilex - Store",
             buyerName: firstName + " " + lastName,
             productName: productNamesFormated,
@@ -159,13 +209,15 @@ function Validate()
             buyerAdress: adress + ", " + posta + ", " + city,
             totalPrice: totalPrice + " RSD"
         };
-
-        console.log(paramsForUser.data);
     
         emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
-            alert("Poslat email korisniku! Status: " + res.status);
+            popUpPoslata.classList.add("show");
+            popUpPoslata.classList.remove("hide");
+            document.body.classList.add("noScroll");
         }).catch(function (err) {
-            console.error("Greška prilikom slanja email-a:", err);
+            popUpError.classList.add("show");
+            popUpError.classList.remove("hide");
+            document.body.classList.add("noScroll");
         });
     }
 }
