@@ -104,90 +104,62 @@ const addDataToHTML = () => {
             newProduct.classList.add('item');
             newProduct.dataset.id = product.id;
 
-            //ako postoji popust
+            //cena sa popustom
             let discount = (product.discount / 100);
             let newPrice = product.price - product.price * discount;
 
+            //kreira proizvod 
+            newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
+                    <img src="${product.image}" class="itemImage" draggable="false">
+                </a>
+                <p class="itemBadge"> Trepavice </p>
+                <h2 class="itemName"> ${product.name} </h2>
+                <div class="prices">
+                    <h3 class="itemPrice"> ${product.price} RSD </h3>
+                </div>
+                <button class="addToCartButton"> DODAJ U KORPU </button>
+                <div class="productStripe">  </div>
+                <div class="notAvailable hide"> NEMA NA STANJU </div>`;
+            //-----------------
 
-            if (windowWidth < 600){
-                if (newPrice != product.price){ //ako postoji popust
-                    newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
-                        <img src="${product.image}" class="itemImage" draggable="false">
-                        <div class="discountMessage"> <div class="snizenje"></div> <div class="procenat"> -${product.discount}% </div> </div>
-                    </a>
-                    <p class="itemBadge"> Trepavice </p>
-                    <h2 class="itemName"> ${product.name} </h2>
-                    <div class="prices">
-                        <h3 class="itemPriceNoDiscount"> ${product.price} RSD </h3>
-                        <h3 class="itemPriceDiscount"> ${newPrice} RSD </h3>
-                    </div>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>
-                    <div class="productStripe">  </div>
-                    <div class="notAvailableBackground hide">  </div>
-                    <div class="notAvailable hide"> NEMA NA STANJU ... </div>`;
-                }
-                else{ //ako ne postoji popust
-                newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
-                        <img src="${product.image}" class="itemImage" draggable="false">
-                    </a>
-                    <p class="itemBadge"> Trepavice </p>
-                    <h2 class="itemName"> ${product.name} </h2>
-                    <div class="prices">
-                        <h3 class="itemPrice"> ${product.price} RSD </h3>
-                    </div>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>
-                    <div class="productStripe">  </div>
-                    <div class="notAvailableBackground hide">  </div>
-                    <div class="notAvailable hide"> NEMA NA STANJU ... </div>`;
-                }
-            }
-            else{
-                if (newPrice != product.price){ //ako postoji popust
-                    newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
-                        <img src="${product.image}" class="itemImage" draggable="false">
-                        <div class="discountMessage"> <div class="snizenje"></div> <div class="procenat"> -${product.discount}% </div> </div>
-                    </a>
-                    <p class="itemBadge"> Trepavice </p>
-                    <h2 class="itemName"> ${product.name} </h2>
-                    <div class="prices">
-                        <h3 class="itemPriceNoDiscount"> ${product.price} RSD </h3>
-                        <h3 class="itemPriceDiscount"> ${newPrice} RSD </h3>
-                    </div>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>
-                    <div class="productStripe">  </div>
-                    <div class="notAvailableBackground hide">  </div>
-                    <div class="notAvailable hide"> NEMA NA STANJU ... </div>`;
-                }
-                else{ //ako ne postoji popust
-                newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
-                        <img src="${product.image}" class="itemImage" draggable="false">
-                    </a>
-                    <p class="itemBadge"> Trepavice </p>
-                    <h2 class="itemName"> ${product.name} </h2>
-                    <div class="prices">
-                        <h3 class="itemPrice"> ${product.price} RSD </h3>
-                    </div>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>
-                    <div class="productStripe">  </div>
-                    <div class="notAvailableBackground hide">  </div>
-                    <div class="notAvailable hide"> NEMA NA STANJU ... </div>`;
-                }
-            }
-            
-                    
             listProductHTML.appendChild(newProduct);
+            newProduct.querySelector(".addToCartButton").disabled = false;
+
+            if (newPrice != product.price){ //ako postoji popust
+                //slicica procenat
+                let discountMessage = document.createElement("div");
+                discountMessage.classList.add("discountMessage");
+
+                let procenat = document.createElement("div");
+                procenat.classList.add("procenat");
+                procenat.textContent = "-" + product.discount + "%";
+
+                discountMessage.appendChild(procenat);
+
+                newProduct.querySelector(".itemLink").appendChild(discountMessage);
+                //----
+
+                //ispravljena stara cena
+                let price = newProduct.querySelector(".itemPrice");
+                price.classList.remove("itemPrice");
+                price.classList.add("itemPriceNoDiscount");
+                //----
+                //nova cena
+                let newPriceH3 = document.createElement("h3");
+                newPriceH3.classList.add("itemPriceDiscount");
+                newPriceH3.textContent = newPrice + " RSD";
+
+                newProduct.querySelector(".prices").appendChild(newPriceH3);
+            }
 
             //ako nije na stanju
 
             if (product.available === 0){        
                 let notAvailableDiv = newProduct.querySelector(".notAvailable");
-                let notAvailableBackground = newProduct.querySelector(".notAvailableBackground");
-                
+                newProduct.querySelector(".addToCartButton").disabled = true;
+
                 notAvailableDiv.classList.remove("hide");
                 notAvailableDiv.classList.add("show");
-
-                notAvailableBackground.classList.remove("hide");
-                notAvailableBackground.classList.add("show");
             }
         })
     }
@@ -439,7 +411,6 @@ document.addEventListener("scroll", () => {
 
 //------------------
 //DODAVANJE SLIKA ZA SVAKU TREPAVICU I SLAJDERI
-//SEKI
 
 document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!!!!!
     const popUpProduct = document.querySelector('.popUpProduct');

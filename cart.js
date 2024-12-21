@@ -44,14 +44,6 @@ if (selectedProducts && selectedProducts.length > 0)
     `;    
 
     productList.appendChild(lastRow);
-
-    let dostava = document.createElement("tr");
-    dostava.innerHTML = `
-    <td> <b> Dostava </b> </td>
-    <td> <b> Isporuka kurirkom službom </b> </td>
-    `;
-
-    productList.appendChild(dostava);
 }
 else{
 
