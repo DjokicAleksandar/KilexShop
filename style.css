@@ -265,13 +265,13 @@ body::-webkit-scrollbar {
     width: 100%;
     display: inline-block;
     margin-top: 10px;
-    margin-bottom: 10px;
     border-radius: 15px;
     text-decoration: none;
     border: 2px solid transparent;
     transition: .2s;
     cursor: pointer;
     user-select: none;
+    overflow: hidden;
 }
 
 .itemLink .itemImage{
@@ -281,28 +281,10 @@ body::-webkit-scrollbar {
     border-radius: 12px;
 }
 
-.itemLink .itemBadge{
-    color: #0f0904;
-    background-color: lightgray;
-    border-radius: 12px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    width: fit-content;
-}
-
-.itemLink .itemName{
+.itemPrice{
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 1.5rem;
-    color: #0f0904;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-
-.itemLink .itemPrice{
-    color: rgb(59, 57, 57);
-    margin-bottom: 10px;
 }
 
 .addToCartButton{
@@ -314,7 +296,7 @@ body::-webkit-scrollbar {
     margin-top: 10px;
     margin-bottom: 10px;
     border: none;
-    color: #FFFECB;
+    color: #FFF;
     background-color: #0f0904;
     font-size: 0.9rem; 
     font-weight: 400;
@@ -667,7 +649,7 @@ body::-webkit-scrollbar {
 
 .popUpProductContent{
     position: relative;
-    background-color: transparent;
+    background-color: white;
     width: 50%;
     max-height: 70vh;
     display: flex;
@@ -679,7 +661,7 @@ body::-webkit-scrollbar {
     padding-bottom: 30px;
 }
 
-.productName {
+.popUpProductName {
     font-size: 2rem;
 }
 
@@ -711,7 +693,7 @@ body::-webkit-scrollbar {
     display: flex;
     column-gap: 1rem;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -737,6 +719,101 @@ body::-webkit-scrollbar {
 .slider::-webkit-scrollbar{
     display: none; /* Chrome, Safari, Edge */
 }
+
+/* POPUSTI */
+
+.prices{
+    display: flex;
+    gap: 10px;
+}
+
+.prices .itemPriceNoDiscount{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.prices .itemPriceDiscount{
+    font-size: 1.5rem;
+    color: rgb(247, 43, 43);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.itemLink .discountMessage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+    background-color: #dab684;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.5rem;
+}
+
+.discountMessage div{
+    color: #fff;
+}
+
+/* ----------- */
+
+/* NEMA NA STANJU */
+
+.notAvailableBackground{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.notAvailableBackground.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.notAvailableBackground.hide{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.notAvailable{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    transform: rotateZ(45deg);
+    background-color: black;
+}
+
+.notAvailable.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.notAvailable.hide{
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ---------------------- */
 
 /* media screen */
 
@@ -878,7 +955,7 @@ body::-webkit-scrollbar {
     }
 
     .popUpProductContent{
-        width: 100%;
+        width: 90%;
     }
 }
 
@@ -893,6 +970,10 @@ body::-webkit-scrollbar {
     }
 
     .popUpProductContent{
-        width: 100%;
+        width: 90%;
+    }
+
+    .popUpProductName{
+        font-size: 1.5rem;
     }
 }

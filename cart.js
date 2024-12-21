@@ -10,7 +10,20 @@ if (selectedProducts && selectedProducts.length > 0)
 {
     selectedProducts.forEach(product => {
         
-        let pricePerProduct = allProducts.find(item => item.id == product.productId)?.price || 0; //ne koristim
+        let pricePerProduct = allProducts.find(item => item.id == product.productId)?.price || 0; 
+
+        //ako postoji popust
+        let discount = allProducts.find(item => item.id == product.productId)?.discount || 0;
+        discount = discount / 100;
+
+        if (discount != 0){
+            let currentPrice = allProducts.find(item => item.id == product.productId)?.price || 0;
+            let newPrice = currentPrice - currentPrice * discount;
+
+            pricePerProduct = newPrice;
+        }
+        //-----
+
         let productName = allProducts.find(item => item.id == product.productId)?.name || 0;
         let totalItemPrice = pricePerProduct * product.quantity;
 
