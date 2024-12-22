@@ -25,12 +25,14 @@ if (selectedProducts && selectedProducts.length > 0)
         //-----
 
         let productName = allProducts.find(item => item.id == product.productId)?.name || 0;
+        let productImage = allProducts.find(item => item.id == product.productId)?.image || 0;
         let totalItemPrice = pricePerProduct * product.quantity;
+        let totalItemPriceFormated = totalItemPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
 
         let newProduct = document.createElement("tr");
         newProduct.innerHTML = `
-        <td class="product" id="product"> ${productName} x <b> ${product.quantity} </b> </td>
-        <td> ${totalItemPrice} RSD </td>
+        <td class="product" id="product"> <img src="${productImage}" height="50px"> <div class="productText"> ${productName} x <b> ${product.quantity} </b> </div> </td>
+        <td> ${totalItemPriceFormated} RSD </td>
         `;
         productList.appendChild(newProduct);
 
@@ -38,9 +40,11 @@ if (selectedProducts && selectedProducts.length > 0)
     })
 
     let lastRow = document.createElement("tr");
+    let totalPriceFormated = totalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
+
     lastRow.innerHTML = `
-    <td> <b> Ukupno: </b> </td>
-    <td> <b> ${totalPrice} RSD </b> </td>
+    <td class="ukupno"> <b> Ukupno: </b> </td>
+    <td class="ukupno"> <b> ${totalPriceFormated} RSD </b> </td>
     `;    
 
     productList.appendChild(lastRow);
@@ -56,6 +60,7 @@ else{
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
     document.querySelector(".container").style.marginTop = navbar + "px";
+    document.querySelector(".dropDown").style.top = navbar + "px";
 })
 
 //---------------
@@ -232,12 +237,74 @@ function Validate()
 
 const icoMenu = document.querySelector(".icoMenu");
 
-icoMenu.addEventListener("click", () => {
-    window.location.href = "index.html";
-})
-
 const cartIcon = document.querySelector(".icoCart");
 
 cartIcon.addEventListener("click", () => {
     window.location.href = "index.html";
+})
+
+//O nama i dropdown
+const dropDown = document.querySelector(".dropDown");
+
+dropDown.classList.remove("show");
+dropDown.classList.add("hide");
+icoMenu.classList.remove("active");
+dropDown.style.transition = "1s";
+
+icoMenu.addEventListener("click", function(){
+    if (dropDown.classList.contains("show")){
+        dropDown.style.transition = "1s";
+        dropDown.classList.remove("show");
+        dropDown.classList.add("hide");
+        icoMenu.classList.remove("active");
+    }
+    else{
+    dropDown.style.transition = ".2s";
+    dropDown.classList.remove("hide");
+    dropDown.classList.add("show");
+    icoMenu.classList.add("active");
+    }
+})
+
+dropDown.addEventListener("click", () => {
+    dropDown.style.transition = "1s";
+    dropDown.classList.remove("show");
+    dropDown.classList.add("hide");
+    icoMenu.classList.remove("active");
+})
+
+const pocetna = document.querySelector("#pocetna");
+const kontakt = document.querySelector("#kontakt");
+const oNama = document.querySelector("#oNama");
+const footer = document.querySelector(".footer");
+
+pocetna.addEventListener("click", () => {
+    window.location.href = "index.html";
+})
+
+kontakt.addEventListener("click", () => {
+    footer.scrollIntoView({ behavior: "smooth" });
+})
+
+const oNamaWindow = document.querySelector(".oNama");
+
+oNamaWindow.classList.add("hide");
+oNamaWindow.classList.remove("show");
+document.body.classList.remove("noScroll");
+
+oNama.addEventListener("click", () => { //o nama prozor
+    dropDown.style.transition = "1s";
+    dropDown.classList.remove("show");
+    dropDown.classList.add("hide");
+    icoMenu.classList.remove("active");
+
+    oNamaWindow.classList.remove("hide");
+    oNamaWindow.classList.add("show");
+    document.body.classList.add("noScroll");
+})
+
+oNamaWindow.addEventListener("click", () => {
+    oNamaWindow.classList.add("hide");
+    oNamaWindow.classList.remove("show");
+    document.body.classList.remove("noScroll");
 })

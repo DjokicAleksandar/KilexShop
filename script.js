@@ -31,6 +31,7 @@ window.addEventListener("resize", promeniSliku);
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+    document.querySelector(".dropDown").style.top = navbar + "px";
 })
 
 //--------------------
@@ -157,9 +158,12 @@ const addDataToHTML = () => {
             if (product.available === 0){        
                 let notAvailableDiv = newProduct.querySelector(".notAvailable");
                 newProduct.querySelector(".addToCartButton").disabled = true;
-
+                //newProduct.querySelector(".addToCartButton").style.backgroundColor = "#858382";
+                
+                
                 notAvailableDiv.classList.remove("hide");
                 notAvailableDiv.classList.add("show");
+
             }
         })
     }
@@ -340,14 +344,72 @@ const initApp = () => {
 initApp();
 
 //-------------
-//menu icon
-
+//menu icon i dropdown lista i o nama prozor
 const icoMenu = document.querySelector(".icoMenu");
+const dropDown = document.querySelector(".dropDown");
+
+dropDown.classList.remove("show");
+dropDown.classList.add("hide");
+icoMenu.classList.remove("active");
+dropDown.style.transition = "1s";
 
 icoMenu.addEventListener("click", function(){
+    if (dropDown.classList.contains("show")){
+        dropDown.style.transition = "1s";
+        dropDown.classList.remove("show");
+        dropDown.classList.add("hide");
+        icoMenu.classList.remove("active");
+    }
+    else{
+    dropDown.style.transition = ".2s";
+    dropDown.classList.remove("hide");
+    dropDown.classList.add("show");
+    icoMenu.classList.add("active");
+    }
+})
+
+dropDown.addEventListener("click", () => {
+    dropDown.style.transition = "1s";
+    dropDown.classList.remove("show");
+    dropDown.classList.add("hide");
+    icoMenu.classList.remove("active");
+})
+
+const pocetna = document.querySelector("#pocetna");
+const kontakt = document.querySelector("#kontakt");
+const oNama = document.querySelector("#oNama");
+const footer = document.querySelector(".footer");
+
+pocetna.addEventListener("click", () => {
     window.location.href = "index.html";
 })
 
+kontakt.addEventListener("click", () => {
+    footer.scrollIntoView({ behavior: "smooth" });
+})
+
+const oNamaWindow = document.querySelector(".oNama");
+
+oNamaWindow.classList.add("hide");
+oNamaWindow.classList.remove("show");
+document.body.classList.remove("noScroll");
+
+oNama.addEventListener("click", () => { //o nama prozor
+    dropDown.style.transition = "1s";
+    dropDown.classList.remove("show");
+    dropDown.classList.add("hide");
+    icoMenu.classList.remove("active");
+
+    oNamaWindow.classList.remove("hide");
+    oNamaWindow.classList.add("show");
+    document.body.classList.add("noScroll");
+})
+
+oNamaWindow.addEventListener("click", () => {
+    oNamaWindow.classList.add("hide");
+    oNamaWindow.classList.remove("show");
+    document.body.classList.remove("noScroll");
+})
 //---------------
 //kontakt pokazivanje
 const velikaSlika = document.querySelector(".velikaSlika");
