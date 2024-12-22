@@ -329,11 +329,14 @@ tbody{
     text-align: center;
     align-items: center;
     display: flex;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 
 .ukupno b{
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .paying{
@@ -538,6 +541,7 @@ tbody{
 @media screen and (max-width: 600px) {
     .container{
         width: 100%;
+        padding: 10px;
     }
 
     .logoNavBar img{
