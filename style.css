@@ -573,7 +573,7 @@ body::-webkit-scrollbar {
 .footerText h3{
     margin: 10px;
     font-size: 15px;
-    color: #FFFECB;
+    color: #FFF;
 }
 
 /* items in cart */
@@ -694,7 +694,7 @@ body::-webkit-scrollbar {
 .openCartPageBtn{
     background-color: #0f0904;
     border: 2px solid #0f0904;
-    color: #FFFECB;
+    color: #FFF;
     text-align: center;
     
     font-weight: 400;
@@ -777,13 +777,16 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 30px;
 }
 
 .popUpProductName {
+    width: 90%;
     font-size: 2rem;
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 1px solid #0f0904;
 }
 
 .sliderWrapper{
@@ -798,6 +801,7 @@ body::-webkit-scrollbar {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    margin-top: 5px;
 }
 
 .slider img{
@@ -814,7 +818,7 @@ body::-webkit-scrollbar {
     display: flex;
     column-gap: 1rem;
     position: absolute;
-    bottom: 0px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;

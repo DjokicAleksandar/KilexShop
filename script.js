@@ -44,7 +44,7 @@ const cartBtn = document.querySelector(".icoCart");
 const popUp = document.querySelector(".popUpCart");
 const cartContent = document.querySelector(".cartContent");
 const continueBtn = document.querySelector(".continueBtn");
-const closeX = document.querySelector(".close");
+const closeX = document.querySelector(".closeFirst");
 
 //prikazi
 cartBtn.addEventListener("click", () => {
@@ -191,10 +191,12 @@ const addToCart = (productId) => {
         carts[positionThisProductInCart].quantity = carts[positionThisProductInCart].quantity + 1;
     }
     addCartToHTML();
+    addCartToMemory();
 }
 
 const addCartToMemory = () => {
     //24:55
+    localStorage.setItem('cart', JSON.stringify(carts));
 }
 
 let cartItemTotal = document.querySelector(".cartItemTotal");
@@ -339,6 +341,11 @@ const initApp = () => {
     .then(data => {
         listProduct = data;
         addDataToHTML();
+
+        if(localStorage.getItem('cart')){
+            carts = JSON.parse(localStorage.getItem('cart'));
+            addCartToHTML();
+        }
     })
 }
 initApp();
@@ -484,7 +491,7 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
 
     const productMap = {
         LI1: {
-            name: 'Trepavice K2',
+            name: 'Tr2',
             images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
         }
     };

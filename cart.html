@@ -24,7 +24,7 @@
 <body>
 
     <div class="oNama">
-        <div class="oNamaContent">
+        <div class="oNamaContent hide">
             <div class="close"> <p id="closeCartX">ZATVORI</p> <img src="Images/close.png" width="20px" height="20px"> </div>
             <div class="oNamaNavbar"> <img src="Images/logoTransparent.png" width="50px" height="50p"> </div>
             <div class="oNamaTextDiv">  
@@ -45,7 +45,7 @@
     </div>
 
     <div class="navbar">
-        <div class="dropDown">
+        <div class="dropDown hide">
             <div class="dropDownContent">
                 <ul class="dropDownElements">
                     <li class="dropDownElement" id="pocetna"> Početna </li>
@@ -67,32 +67,32 @@
 
             <div class="nameLastName">
                 <div class="firstName">
-                    <h3>Ime: * </h3>
+                    <h3>Ime: <p class="zvezdica">*</p> </h3>
                     <input type="text" placeholder="Ime" id="firstName">
                     <div class="firstNameError error"></div>
                 </div>
 
                 <div class="lastName">
-                    <h3>Prezime: * </h3>
+                    <h3>Prezime: <p class="zvezdica">*</p> </h3>
                     <input type="text" placeholder="Prezime" id="lastName">
                     <div class="lastNameError error"></div>
                 </div>
             </div>
 
             <div class="email">
-                <h3>Email: * </h3>
+                <h3>Email: <p class="zvezdica">*</p> </h3>
                 <input type="email" placeholder="E-adresa" id="email">
                 <div class="emailError error"></div>
             </div>
             
             <div class="city">
-                <h3>Grad: *</h3>
+                <h3>Grad: <p class="zvezdica">*</p> </h3>
                 <input type="text" id="city">
                 <div class="cityError error"></div>
             </div>
 
             <div class="adress">
-                <h3>Ulica i kućni broj: *</h3>
+                <h3>Ulica i kućni broj: <p class="zvezdica">*</p> </h3>
                 <input type="text" id="adress">
                 <div class="adressError error"></div>
             </div>
@@ -103,7 +103,7 @@
             </div>
 
             <div class="phone">
-                <h3>Telefon: *</h3>
+                <h3>Telefon: <p class="zvezdica">*</p> </h3>
                 <input type="tel" pattern="^06[0-9]{7,9}$" placeholder="Broj telefona" id="phone">
                 <div class="phoneError error"></div>
             </div>
