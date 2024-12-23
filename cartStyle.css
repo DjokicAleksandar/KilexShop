@@ -595,6 +595,11 @@ tbody{
     justify-content: space-around;
     align-items: center;
     gap: 20px;
+    width: 100%;
+}
+
+.footerSecond{
+    width: 70%;
 }
 
 .footerSecond h3{
@@ -604,8 +609,9 @@ tbody{
 }
 
 .companyInfo{
+    width: 100%;
     display: flex;
-    gap: 20px;
+    justify-content: space-around;
 }
 
 .logo{
@@ -626,6 +632,17 @@ tbody{
     display: flex;
     align-items: center;
     padding: 5px;
+}
+
+.footerContact a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.footerContact a:hover h3{
+    color: #dab684;
 }
 
 .footerContact img{
@@ -704,16 +721,20 @@ tbody{
         width: 80%;
     }
 
-    .footer{
-        padding: 30px 10px 30px 10px;
-    }
-
     .close p{
         font-size: 14px;
     }
 
     .close img {
         height: 20px;
+    }
+
+    .footer{
+        padding: 30px 10px 30px 10px;
+    }
+
+    .footerSecond{
+        width: 100%;
     }
 }
 
