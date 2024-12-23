@@ -13,6 +13,10 @@ body{
     min-height: 100vh;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .noScroll{
     overflow: hidden;
 }
@@ -59,6 +63,7 @@ body{
 .oNamaText{
     margin-top: 60px;
     padding: 10px;
+    overflow-x: hidden;
 }
 
 .oNamaTextDiv{
@@ -104,7 +109,8 @@ body{
 
 .dropDownContent{
     width: max-content;
-    background-color: #0f0904;
+    /*background-color: #0f0904;*/
+    background-color: rgba(15, 9, 4, 0.75);
     border-top: 1px solid #dab684;
 }
 
@@ -118,6 +124,7 @@ body{
     font-size: 1.3rem;
     color: #dab684;
     padding: 20px 40px 20px 40px;
+    font-weight: 300;
 }
 
 #pocetna, #kontakt{
@@ -125,7 +132,8 @@ body{
 }
 
 .dropDownElement:hover{
-    background-color: #1f1914;
+    /*background-color: #1f1914;*/
+    background-color: rgba(15, 9, 4, 0.8);
     color: #fff;
     transition: .2s;
 }
@@ -312,7 +320,7 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 15px;
+    padding: 15px 10px 15px 10px;
 }
 
 tbody{
@@ -510,8 +518,9 @@ tbody{
 }
 
 .footer{
+    left: 0;
+    bottom: 0;
     width: 100%;
-    height: max-content;
     padding: 30px;
     background-color: #0f0904;
     margin-top: 50px;
@@ -521,14 +530,55 @@ tbody{
     gap: 20px;
 }
 
-.footer img{
-    margin: 10px;
+.logo{
+    height: 130px;
+}
+
+.logo img{
+    height: 100%;
 }
 
 .footerText h3{
     margin: 10px;
     font-size: 15px;
     color: #FFF;
+}
+
+.footerContact{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.footerContact img{
+    width: 40px;
+}
+
+.footerContact h3{
+    font-weight: 400;
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* pozadina skrolbara */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px; 
+}
+
+/* klizac skrolbara */
+::-webkit-scrollbar-thumb {
+    background: #bcbbbb;
+    border-radius: 10px; 
+}
+
+/* Stil za klizac kada je izabran */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 @media screen and (max-width: 900px){
@@ -566,5 +616,19 @@ tbody{
 
     .nameLastName div{
         width: 100%;
+    }
+
+    .oNamaContent{
+        width: 70%;
+    }
+
+    .footer{
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .logo{
+        height: 100px;
     }
 }

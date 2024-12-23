@@ -101,6 +101,8 @@ body::-webkit-scrollbar {
 .oNamaText{
     margin-top: 60px;
     padding: 10px;
+    overflow-x: hidden;
+    font-weight: 350;
 }
 
 .oNamaTextDiv{
@@ -169,7 +171,8 @@ body::-webkit-scrollbar {
 
 .dropDownContent{
     width: max-content;
-    background-color: #0f0904;
+    /*background-color: #0f0904;*/
+    background-color: rgba(15, 9, 4, 0.75);
     border-top: 1px solid #dab684;
 }
 
@@ -183,6 +186,8 @@ body::-webkit-scrollbar {
     font-size: 1.3rem;
     color: #dab684;
     padding: 20px 40px 20px 40px;
+    user-select: none;
+    font-weight: 300;
 }
 
 #pocetna, #kontakt{
@@ -190,7 +195,8 @@ body::-webkit-scrollbar {
 }
 
 .dropDownElement:hover{
-    background-color: #1f1914;
+    /*background-color: #1f1914;*/
+    background-color: rgba(15, 9, 4, 0.8);
     color: #fff;
     transition: .2s;
 }
@@ -556,7 +562,6 @@ body::-webkit-scrollbar {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: max-content;
     padding: 30px;
     background-color: #0f0904;
     margin-top: 50px;
@@ -566,14 +571,32 @@ body::-webkit-scrollbar {
     gap: 20px;
 }
 
-.footer img{
-    margin: 10px;
+.logo{
+    height: 130px;
+}
+
+.logo img{
+    height: 100%;
 }
 
 .footerText h3{
     margin: 10px;
     font-size: 15px;
     color: #FFF;
+}
+
+.footerContact{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.footerContact img{
+    width: 40px;
+}
+
+.footerContact h3{
+    font-weight: 400;
 }
 
 /* items in cart */
@@ -1069,6 +1092,14 @@ body::-webkit-scrollbar {
     .notAvailable{
         font-size: 0.6rem;
     }
+
+    .oNamaContent{
+        width: 70%;
+    }
+
+    .footer{
+        padding: 10px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -1087,5 +1118,9 @@ body::-webkit-scrollbar {
 
     .popUpProductName{
         font-size: 1.5rem;
+    }
+
+    .logo{
+        height: 100px;
     }
 }
