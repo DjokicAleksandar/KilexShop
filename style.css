@@ -589,6 +589,7 @@ body::-webkit-scrollbar {
 
 .companyInfo{
     display: flex;
+    gap: 20px;
 }
 
 .logo{

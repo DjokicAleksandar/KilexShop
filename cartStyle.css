@@ -603,6 +603,11 @@ tbody{
     font-weight: 400;
 }
 
+.companyInfo{
+    display: flex;
+    gap: 20px;
+}
+
 .logo{
     height: 130px;
 }
