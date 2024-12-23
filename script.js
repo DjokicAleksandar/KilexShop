@@ -396,6 +396,8 @@ kontakt.addEventListener("click", () => {
 })
 
 const oNamaWindow = document.querySelector(".oNama");
+const oNamaContent = document.querySelector(".oNamaContent");
+const closeONama = document.querySelector("#closeONama");
 
 oNamaWindow.classList.add("hide");
 oNamaWindow.classList.remove("show");
@@ -417,6 +419,17 @@ oNamaWindow.addEventListener("click", () => {
     oNamaWindow.classList.remove("show");
     document.body.classList.remove("noScroll");
 })
+
+closeONama.addEventListener("click", () => {
+    oNamaWindow.classList.add("hide");
+    oNamaWindow.classList.remove("show");
+    document.body.classList.remove("noScroll");
+})
+
+oNamaContent.addEventListener("click", (event) => {
+    event.stopPropagation();
+})
+
 //---------------
 //kontakt pokazivanje
 const velikaSlika = document.querySelector(".velikaSlika");

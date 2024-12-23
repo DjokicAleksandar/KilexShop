@@ -82,6 +82,8 @@ body::-webkit-scrollbar {
     background-color: #fff;
     width: 50%;
     height: 60%;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .oNamaContent::-webkit-scrollbar{
@@ -95,7 +97,7 @@ body::-webkit-scrollbar {
     position: absolute;
     background-color: #0f0904;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
 }
 
 .oNamaText{
@@ -272,7 +274,7 @@ body::-webkit-scrollbar {
 .sliderNaslovne{
     width: 100%;
     display: flex;  
-    animation: slideNaslovne 15s infinite;
+    animation: slideNaslovne 25s infinite;
 }
 
 @keyframes slideNaslovne {
@@ -566,9 +568,27 @@ body::-webkit-scrollbar {
     background-color: #0f0904;
     margin-top: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
+}
+
+.footerFirst{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.footerSecond h3{
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.companyInfo{
+    display: flex;
 }
 
 .logo{
@@ -1094,11 +1114,11 @@ body::-webkit-scrollbar {
     }
 
     .oNamaContent{
-        width: 70%;
+        width: 80%;
     }
 
     .footer{
-        padding: 10px;
+        padding: 30px 10px 30px 10px;
     }
 }
 

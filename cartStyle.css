@@ -21,6 +21,10 @@ body::-webkit-scrollbar {
     overflow: hidden;
 }
 
+h1{
+    font-weight: 500;
+}
+
 /* O NAMA */
 
 .oNama{
@@ -44,6 +48,8 @@ body::-webkit-scrollbar {
     background-color: #fff;
     width: 50%;
     height: 60%;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .oNamaContent::-webkit-scrollbar{
@@ -57,13 +63,14 @@ body::-webkit-scrollbar {
     position: absolute;
     background-color: #0f0904;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
 }
 
 .oNamaText{
     margin-top: 60px;
     padding: 10px;
     overflow-x: hidden;
+    font-weight: 350;
 }
 
 .oNamaTextDiv{
@@ -84,6 +91,52 @@ body::-webkit-scrollbar {
 }
 
 /* ------------ */
+
+/* privacy policy */
+
+.privacyPolicyPopUp{
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: 1s;
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.privacyPolicyPopUp.hide{
+    top: -100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.privacyPolicyPopUp.show{
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.privacyPolicyContent{
+    position: relative;
+    background-color: #fff;
+    width: 50%;
+    height: 60%;
+}
+.privacyPolicyNavbar{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #0f0904;
+    text-align: center;
+    padding: 5px;
+}
 
 /* drop down menu */
 
@@ -125,6 +178,7 @@ body::-webkit-scrollbar {
     color: #dab684;
     padding: 20px 40px 20px 40px;
     font-weight: 300;
+    user-select: none;
 }
 
 #pocetna, #kontakt{
@@ -192,6 +246,10 @@ body::-webkit-scrollbar {
     background-color: #0f0904;
     transform: translateY(-100%);
     animation: slideDown 1s forwards ease-in-out;
+}
+
+.logoNavBar{
+    user-select: none;
 }
 
 .icoCart{
@@ -350,7 +408,7 @@ tbody{
 .paying{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     font-size: 1rem;
     border-radius: 10px;
     margin-top: 20px;
@@ -360,6 +418,7 @@ tbody{
 
 .paying a{
     color: #dab684;
+    text-decoration: none;
 }
 
 .moreInfo{
@@ -400,7 +459,7 @@ tbody{
 
 .order{
     width: 100%;
-    color: #FFFECB;
+    color: #FFF;
     background-color: #0f0904;
     border-radius: 4px;
     cursor: pointer;
@@ -525,9 +584,23 @@ tbody{
     background-color: #0f0904;
     margin-top: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
+}
+
+.footerFirst{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.footerSecond h3{
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .logo{
@@ -619,11 +692,23 @@ tbody{
     }
 
     .oNamaContent{
-        width: 70%;
+        width: 80%;
+    }
+
+    .privacyPolicyContent{
+        width: 80%;
     }
 
     .footer{
-        padding: 10px;
+        padding: 30px 10px 30px 10px;
+    }
+
+    .close p{
+        font-size: 14px;
+    }
+
+    .close img {
+        height: 20px;
     }
 }
 

@@ -287,6 +287,8 @@ kontakt.addEventListener("click", () => {
 })
 
 const oNamaWindow = document.querySelector(".oNama");
+const oNamaContent = document.querySelector(".oNamaContent");
+const closeONama = document.querySelector("#closeONama");
 
 oNamaWindow.classList.add("hide");
 oNamaWindow.classList.remove("show");
@@ -307,4 +309,49 @@ oNamaWindow.addEventListener("click", () => {
     oNamaWindow.classList.add("hide");
     oNamaWindow.classList.remove("show");
     document.body.classList.remove("noScroll");
+})
+
+closeONama.addEventListener("click", () => {
+    oNamaWindow.classList.add("hide");
+    oNamaWindow.classList.remove("show");
+    document.body.classList.remove("noScroll");
+})
+
+oNamaContent.addEventListener("click", (event) => {
+    event.stopPropagation();
+})
+
+//----------------------
+//privacy policy prozor
+
+const privacyPolicyPopUp = document.querySelector(".privacyPolicyPopUp");
+const privacyPolicyLink = document.querySelector("#privacyPolicyLink");
+const closePrivacyPolicy = document.querySelector("#closePrivacyPolicy");
+const privacyPolicyContent = document.querySelector(".privacyPolicyContent");
+
+privacyPolicyLink.classList.remove("show");
+privacyPolicyPopUp.classList.add("hide");
+document.body.classList.remove("noScroll");
+
+privacyPolicyLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    privacyPolicyPopUp.classList.remove("hide");
+    privacyPolicyPopUp.classList.add("show");
+    document.body.classList.add("noScroll");
+})
+
+privacyPolicyPopUp.addEventListener("click", () => {
+    privacyPolicyPopUp.classList.remove("show");
+    privacyPolicyPopUp.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+closePrivacyPolicy.addEventListener("click", () => {
+    privacyPolicyPopUp.classList.remove("show");
+    privacyPolicyPopUp.classList.add("hide");
+    document.body.classList.remove("noScroll");
+})
+
+privacyPolicyContent.addEventListener("click", (event) => {
+    event.stopPropagation();
 })
