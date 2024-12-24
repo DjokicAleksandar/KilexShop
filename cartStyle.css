@@ -370,7 +370,7 @@ h1{
 }
 
 .productList tr{
-    border: 2px solid #dab684;    
+    border: 1px solid #dab684;    
     font-weight: 400;
 }
 
@@ -424,7 +424,7 @@ tbody{
 .moreInfo{
     width: 100%;
     gap: 20px;
-    border: 2px solid #dab684;
+    border: 1px solid #dab684;
     padding: 10px;
     display: flex;
     flex-direction: column;
