@@ -58,18 +58,21 @@ popUp.addEventListener("click", (e) => {
     popUp.classList.add("hide")
     popUp.classList.remove("show");
     document.body.classList.remove('noScroll');
+    
 })
 
 continueBtn.addEventListener("click", () => {
     popUp.classList.add("hide");
     popUp.classList.remove("show");
     document.body.classList.remove('noScroll');
+    
 })
 
 closeX.addEventListener("click", () => {
     popUp.classList.add("hide")
     popUp.classList.remove("show");
     document.body.classList.remove('noScroll');
+    
 })
 
 cartContent.addEventListener("click", (e) => {
@@ -322,9 +325,36 @@ const changeQuantity = (productId, type) => {
     addCartToHTML();
 }
 
+//cartBtn je ikonica korpe
+//funkcija za dodavanje animacije za korpu
+function animateCart() {
+    // Dodaj klasu za animaciju
+    cartBtn.classList.add("cartAnimation");
+  
+    // kraj animacije
+    setTimeout(() => {
+        cartBtn.classList.remove("cartAnimation");
+    }, 600);
+}
+
+//svakih 10 sekundi protresi korpu
+setInterval(() => {
+    if (carts.length > 0) {
+      animateCart(); 
+    }
+}, 10000);
+
+//skloni klasu za animaciju
+cartBtn.addEventListener("animationend", () => {
+    cartBtn.classList.remove("cartAnimation");
+});
+
+
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addToCartButton')){
+        animateCart();
+
         let productId = positionClick.parentElement.dataset.id;
         addToCart(productId);
         

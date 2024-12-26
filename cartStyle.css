@@ -569,12 +569,14 @@ tbody{
 
 .footerFirst{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
-    width: 100%;
+    width: 70%;
     border-bottom: 1px solid #dab684;
     padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .footerSecond{
@@ -605,6 +607,12 @@ tbody{
     display: flex;
     gap: 5px;
     flex-direction: column;
+}
+
+.copyright{
+    color: gray;
+    font-weight: 300;
+    font-size: 15px;
 }
 
 .companyInfo{
@@ -752,6 +760,7 @@ tbody{
         justify-content: space-between;
         padding-left: 10px;
         padding-right: 10px;
+        width: 100%;
     }
 
     .footerSecond{
