@@ -1058,31 +1058,6 @@ body::-webkit-scrollbar {
 }
 
 /* ---------------------- */
-/* IMA NA STANJU */
-
-.available{
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 0.6rem;
-    opacity: 0;
-    visibility: hidden;
-    white-space: nowrap;
-    background-color: rgb(41, 231, 37);
-}
-
-.available.show{
-    opacity: 1;
-    visibility: visible;
-}
-
-.available.hide{
-    opacity: 0;
-    visibility: hidden;
-}
 
 /* media screen */
 

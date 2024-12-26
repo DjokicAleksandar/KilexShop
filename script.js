@@ -123,8 +123,7 @@ const addDataToHTML = () => {
                 </div>
                 <button class="addToCartButton"> DODAJ U KORPU </button>
                 <div class="productStripe">  </div>
-                <div class="notAvailable hide"> NEMA NA STANJU </div>
-                <div class="available show"> IMA NA STANJU </div>`;
+                <div class="notAvailable hide"> NEMA NA STANJU </div>`;
             //-----------------
 
             listProductHTML.appendChild(newProduct);
@@ -463,14 +462,16 @@ oNamaContent.addEventListener("click", (event) => {
 
 //---------------
 //kontakt pokazivanje
+const windowHeight = window.innerHeight;
 const velikaSlika = document.querySelector(".velikaSlika");
 const contact = document.querySelector(".contact");
 
 document.addEventListener("scroll", () => {
     const trenutniScroll = window.scrollY;
-    const donjaGranica = velikaSlika.getBoundingClientRect().bottom;
-
-    if (trenutniScroll > donjaGranica){
+    const donjaGranica = velikaSlika.getBoundingClientRect().bottom; 
+    const gornjaGranica = footer.getBoundingClientRect().top;
+    
+    if (gornjaGranica > windowHeight && trenutniScroll > donjaGranica) {
         contact.classList.add("visibleContact");
     }
     else{
