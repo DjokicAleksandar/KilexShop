@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: "Lexend", sans-serif;
     color: #0f0904;
+    user-select: none;
 }
 
 html{

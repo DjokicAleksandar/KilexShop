@@ -123,7 +123,8 @@ const addDataToHTML = () => {
                 </div>
                 <button class="addToCartButton"> DODAJ U KORPU </button>
                 <div class="productStripe">  </div>
-                <div class="notAvailable hide"> NEMA NA STANJU </div>`;
+                <div class="notAvailable hide"> NEMA NA STANJU </div>
+                <div class="available show"> IMA NA STANJU </div>`;
             //-----------------
 
             listProductHTML.appendChild(newProduct);
