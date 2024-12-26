@@ -263,7 +263,7 @@ body::-webkit-scrollbar {
 }
 
 .content{
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -274,7 +274,7 @@ body::-webkit-scrollbar {
 .imageContainer{
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 100vw;
 }
 
 .sliderNaslovne{
@@ -586,16 +586,38 @@ body::-webkit-scrollbar {
     align-items: center;
     gap: 20px;
     width: 100%;
+    border-bottom: 1px solid #dab684;
+    padding-bottom: 10px;
 }
 
 .footerSecond{
     width: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.footerSecond h3{
-    color: white;
-    font-size: 15px;
+.footerSecond h2{
+    color: gray;
     font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.footerSecond a{
+    font-weight: 300;
+    text-decoration: none;
+    color: gray;
+}
+
+.footerSecond a:hover{
+    color: white;
+}
+
+.footerLinks{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
 
 .companyInfo{
@@ -622,8 +644,12 @@ body::-webkit-scrollbar {
 }
 
 .logo img{
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
+}
+
+.footerText{
+    display: flex;
 }
 
 .footerText h3{
@@ -645,12 +671,13 @@ body::-webkit-scrollbar {
     text-decoration: none;
 }
 
-.footerContact a:hover h3{
-    color: #dab684;
+.footerContact img{
+    width: 50px;
+    height: 50px;
 }
 
-.footerContact img{
-    width: 40px;
+.footerContact a:hover h3{
+    color: #dab684;
 }
 
 .footerContact h3{
@@ -1024,7 +1051,7 @@ body::-webkit-scrollbar {
 
     .logoNavBar img{
         height: 40px;
-        width: 50px;
+        width: 40px;
     }
 
     .icoMenu img{
@@ -1159,8 +1186,33 @@ body::-webkit-scrollbar {
         padding: 30px 10px 30px 10px;
     }
 
+    .footerFirst{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .footerSecond{
         width: 100%;
+    }
+
+    .footerSecond h2{
+        font-size: 20px;
+    }
+
+    .footerSecond a{
+        font-size: 15px;
+    }
+
+    .footerContact img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo img{
+        width: 50px;
+        height: 50px;   
     }
 }
 
@@ -1180,9 +1232,5 @@ body::-webkit-scrollbar {
 
     .popUpProductName{
         font-size: 1.5rem;
-    }
-
-    .logo{
-        height: 100px;
     }
 }
