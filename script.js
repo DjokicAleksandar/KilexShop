@@ -504,7 +504,43 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
 
     const productMap = {
         LI1: {
+            name: 'Tr1',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI2: {
             name: 'Tr2',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI3: {
+            name: 'Tr3',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI4: {
+            name: 'Tr4',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI5: {
+            name: 'Tr5',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI6: {
+            name: 'Tr6',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI7: {
+            name: 'Tr7',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI8: {
+            name: 'Tr8',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI9: {
+            name: 'Tr9',
+            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
+        },
+        LI10: {
+            name: 'Tr10',
             images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
         }
     };
@@ -512,7 +548,6 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
     document.querySelectorAll('.itemLink').forEach(link => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log('aca');
 
             const linkId = link.id;
             const eyelash = productMap[linkId];

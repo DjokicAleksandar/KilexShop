@@ -32,7 +32,7 @@ if (selectedProducts && selectedProducts.length > 0)
         let newProduct = document.createElement("tr");
         newProduct.innerHTML = `
         <td class="product" id="product"> <img src="${productImage}" height="50px"> <div class="productText"> ${productName} x <b> ${product.quantity} </b> </div> </td>
-        <td> ${totalItemPriceFormated} RSD </td>
+        <td class="tdPrice"> ${totalItemPriceFormated} RSD </td>
         `;
         productList.appendChild(newProduct);
 
@@ -40,11 +40,12 @@ if (selectedProducts && selectedProducts.length > 0)
     })
 
     let lastRow = document.createElement("tr");
+    lastRow.classList.add("trUkupno");
     let totalPriceFormated = totalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
 
     lastRow.innerHTML = `
     <td class="ukupno"> <b> Ukupno: </b> </td>
-    <td class="ukupno"> <b> ${totalPriceFormated} RSD </b> </td>
+    <td class="ukupnoCena"> <b> ${totalPriceFormated} RSD </b> </td>
     `;    
 
     productList.appendChild(lastRow);
@@ -323,35 +324,3 @@ oNamaContent.addEventListener("click", (event) => {
 
 //----------------------
 //privacy policy prozor
-
-const privacyPolicyPopUp = document.querySelector(".privacyPolicyPopUp");
-const privacyPolicyLink = document.querySelector("#privacyPolicyLink");
-const closePrivacyPolicy = document.querySelector("#closePrivacyPolicy");
-const privacyPolicyContent = document.querySelector(".privacyPolicyContent");
-
-privacyPolicyLink.classList.remove("show");
-privacyPolicyPopUp.classList.add("hide");
-document.body.classList.remove("noScroll");
-
-privacyPolicyLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    privacyPolicyPopUp.classList.remove("hide");
-    privacyPolicyPopUp.classList.add("show");
-    document.body.classList.add("noScroll");
-})
-
-privacyPolicyPopUp.addEventListener("click", () => {
-    privacyPolicyPopUp.classList.remove("show");
-    privacyPolicyPopUp.classList.add("hide");
-    document.body.classList.remove("noScroll");
-})
-
-closePrivacyPolicy.addEventListener("click", () => {
-    privacyPolicyPopUp.classList.remove("show");
-    privacyPolicyPopUp.classList.add("hide");
-    document.body.classList.remove("noScroll");
-})
-
-privacyPolicyContent.addEventListener("click", (event) => {
-    event.stopPropagation();
-})

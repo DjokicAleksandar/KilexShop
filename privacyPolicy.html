@@ -8,18 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <link rel="shortcut icon" type="x-icon" href="Images/logoTransparent.png">
-    <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
 
-    <script src="script.js" defer></script>
-
-    <title>Kilex - Store</title>
+    <link rel="stylesheet" href="privacyPolicy.css">
 </head>
 <body>
-    
+
     <div id="loader"> <h1> Učitavanje ... </h1> <div class="loaderAnimation"></div> </div>
 
     <div class="oNama hide">
@@ -54,86 +49,85 @@
             </div>
         </div>
 
-        <div class="icoMenu"> <img src="Images/menu1.png" class="icoMenuImage" width="30px" height="30px"> </div>
+        <div class="icoMenu"> <img src="Images/menu1.png" class="icoMenuImage" width="40px" height="40px"> </div>
         <div class="logoNavBar"> <img src="Images/logoTransparent.png" class="logoNavBarImage" width="70px" height="55px"> </div>
-        <div class="icoCart"> <img src="Images/cart1.png" class="icoCartImage" width="30px" height="30px"> <div class="cartNumber"><b>0</b></div> </div>
+        <div class="icoCart"> <img src="Images/backArrow.png" class="icoCartImage" width="40px" height="40px"> </div>
     </div>
+
 
     <div class="content">
 
-        <div class="imageContainer">
-            <div class="sliderNaslovne">
-                <img src="Images/slika1.png" class="velikaSlika" id="prvaVelikaSlika">
-                <img src="Images/slika1.png" class="velikaSlika" id="drugaVelikaSlika">
-            </div>
-        </div>
+        <h1 class="naslov"> Politika privatnosti </h1>
 
-        <div class="glavniText"> <div class="stripe"> </div> <h2> Gde se kvalitet i lepota susreću</h2> <div class="stripe"> </div> </div>
-        
-        <div class="shop">
+        <h4 class="uvod"> Ovom Politikom privatnosti Kilex TR, Vlasotince (u daljem tekstu: ,,Kilex“ ili ,,mi“) 
+            Vas obaveštava o obradi Vaših ličnih podataka (u daljem tekstu: ,,Podaci“) prilikom poručivanja i kupovine proizvoda na sajtu
+             www.kilex.co kao i o Vašim pravima i zahtevima za zaštitu podataka u skladu sa Zakonom o zaštiti podataka o ličnosti u Srbiji 
+             i the General Data Protection Regulation (EU) 2016/679 (GDPR) – Opšta uredba o zaštiti podataka o ličnosti EU, kako sledi: </h4>
 
-            <ul class="items">
-                <li class="item">
-                    <a class="itemLink">
-                        <img src="Images/Eyelash/K2-Cela.jpg" class="itemImage" draggable="false">
-                        <div class="discountMessage"> <div class="procenat"></div> </div>
-                    </a>
-                    <p class="itemBadge"> Trepavice </p>
-                    <h2 class="itemName"> Trepavice broj 1 </h2>
-                    <div class="prices">
-                        <h3 class="itemPrice"> 1999 RSD </h3>
-                        <h3 class="itemPriceDiscount">  </h3>
-                    </div>
-                    <button class="addToCartButton"> DODAJ U KORPU </button>
-
-                    <div class="notAvailable"> NEMA NA STANJU </div>
-                </li>   
+        <div class="podaciKojePrikupljamo">
+            <h2> Podaci koje prikupljamo </h2>
+            <h4> Prikupljamo samo osnovne informacije koje su potrebne za obradu vaše narudžbine i dostavu proizvoda, uključujući:  </h4>
+            <ul>
+                <li> Ime i prezime </li>
+                <li> Adresu za dostavu </li>
+                <li> Broj telefona </li>
+                <li> Email adresu </li>
             </ul>
-
-        </div> 
-
-        <div class="popUpCart"> 
-            <div class="cartContent">
-                <div class="close closeFirst"> <p id="closeCartX">ZATVORI</p> <img src="Images/close.png" width="20px" height="20px"> </div>
-                <div class="vasaKorpa">
-                    <h2> VASA KORPA </h2>
-                </div>
-
-                <div class="listCart">
-                </div>
-
-                <h3 class="emptyCart"> KORPA JE PRAZNA </h3>
-                <div class="price"> <h3>UKUPNO: </h3> <h3 id="totalPrice"> 0.00 RSD </h3> </div>
-
-                <div class="cartButtons">
-                    <button class="continueBtn"> NASTAVI KUPOVINU </button>
-                    <button class="openCartPageBtn"> ZAVRSI KUPOVINU </button>
-                </div>
-            </div>
+            <h4> <b> Napomena: </b> Vaše podatke ne prikupljamo automatski niti koristimo kolačiće. </h4>
         </div>
 
-        <div class="popUpProduct">
-            <div class="popUpProductContent">
-                <div class="close closeSecond"> <p id="closeCartX">ZATVORI</p> <img src="Images/close.png" width="20px" height="20px"> </div> 
-                <div class="popUpProductName"> Trepavica 1 </div>
-                <div class="sliderWrapper">
-                    <div class="slider">
-                        <img src="Images/Eyelash/K2-kutija-Copy.jpg" id="ImageSlide1">
-                        <img src="Images/Eyelash/K2-cela-Copy.jpg" id="ImageSlide2">
-                        <img src="Images/Eyelash/K2-obe-Copy.jpg" id="ImageSlide3">
-                    </div>
-                    <div class="sliderNav">
-                        <a href="#ImageSlide1"></a>
-                        <a href="#ImageSlide2"></a>
-                        <a href="#ImageSlide3"></a>
-                    </div>
-                </div>
-            </div>
+        <div class="kakoKoristimoPodatke">
+            <h2> Kako koristimo vaše podatke </h2>
+            <h4> Prikupljene informacije koristimo isključivo u sledeće svrhe: </h4>
+            <ul> 
+                <li> Obrada i slanje narudžbine </li>
+                <li> Komunikacija sa vama u vezi sa narudžbinom </li>
+            </ul>
+            <h4> Vaše podatke nećemo koristiti za druge svrhe bez vaše izričite saglasnosti. </h4>
         </div>
 
-        <a href="https://wa.me/381621767144">
-            <div class="contact"> <img class="contactImage" src="Images/whatsappzelen2.svg"> </div>
-        </a>
+        <div class="deljenjeSaTrecimStranama">
+            <h2> Deljenje podataka sa trećim stranama </h2>
+            <h4> Vaše podatke delimo samo sa: </h4>
+            <ul> 
+                <li> Kurirskim službama za dostavu narudžbina </li>
+                <li> Nadležnim organima, ukoliko to zakon zahteva </li>
+            </ul>
+            <h4> Nikada ne prodajemo, iznajmljujemo niti delimo vaše podatke sa trećim stranama u marketinške svrhe. </h4>
+        </div>
+
+        <div class="sigurnostPodataka">
+            <h2> Sigurnost podataka </h2>
+            <h4> Primenićemo sve razumne mere kako bismo zaštitili vaše podatke od neovlašćenog pristupa, izmene ili zloupotrebe. </h4>
+        </div>
+
+        <div class="vasaPrava">
+            <h2> Vaša prava </h2>
+            <h4> Imate pravo da: </h4>
+            <ul>
+                <li> Zatražite pristup vašim podacima koje čuvamo </li> 
+                <li> Izmenite ili ažurirate vaše podatke </li>
+                <li> Zatražite brisanje vaših podataka (osim onih koje zakon nalaže da čuvamo) </li>
+            </ul>
+            <h4> Za ostvarivanje svojih prava, molimo vas da nas kontaktirate putem email adrese: kilexxx0@gmail.com. </h4>
+        </div>
+
+        <div class="izmenePolitikePrivatnosti">
+            <h2> Izmene politike privatnosti </h2>
+            <h4> Zadržavamo pravo da ažuriramo ovu Politiku privatnosti u bilo kom trenutku. Sve izmene biće objavljene na ovoj stranici. <br>
+                 Preporučujemo da povremeno proveravate Politiku privatnosti radi informisanosti o eventualnim promenama. 
+            </h4>
+        </div>
+
+        <div class="kontaktInformacije">
+            <h2> Kontakt informacije: </h2>
+            <h4> Ukoliko imate pitanja ili zahteve u vezi sa vašim podacima, možete nas kontaktirati: </h4>
+            <ul>
+                <li> Email: kilexxx0@gmail.com </li>
+                <li> Telefon: +381 62 1767144  </li>
+                <li> Adresa: Stajkovce bb </li>
+            </ul>
+        </div>
 
         <div class="footer">
 
@@ -167,8 +161,9 @@
           
 
         </div>
-
+        
     </div>
-
+    
+    <script src="privacyPolicy.js" defer></script>
 </body>
 </html>
