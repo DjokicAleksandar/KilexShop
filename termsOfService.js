@@ -21,7 +21,7 @@ const icoMenu = document.querySelector(".icoMenu");
 const cartIcon = document.querySelector(".icoCart");
 
 cartIcon.addEventListener("click", () => {
-    window.location.href = "cart.html";
+    window.history.back();
 })
 
 //O nama i dropdown

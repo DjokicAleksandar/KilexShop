@@ -135,18 +135,17 @@ h1{
 .dropDownElements{
     list-style: none;
     display: flex;
-    flex-direction: column;
 }
 
 .dropDownElement{
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #dab684;
     padding: 20px 40px 20px 40px;
     font-weight: 300;
     user-select: none;
 }
 
-#pocetna, #kontakt{
+#pocetna, #kontakt, #oNama{
     border-bottom: 1px solid #dab684;
 }
 
@@ -668,8 +667,8 @@ tbody{
 }
 
 .footerContact img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .footerContact a:hover h3{
@@ -707,6 +706,18 @@ tbody{
     .container{
         display: flex;
         flex-direction: column;
+    }
+
+    .dropDownElements{
+        flex-direction: column;
+    }
+
+    .dropDownElement{
+        font-size: 1.3rem;
+    }
+
+    #oNama{
+        border-bottom: none;
     }
 }
 

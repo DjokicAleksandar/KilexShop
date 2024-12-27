@@ -34,6 +34,12 @@ window.addEventListener("DOMContentLoaded", function(){
     document.querySelector(".dropDown").style.top = navbar + "px";
 })
 
+window.addEventListener("resize", function(){
+    var navbar = document.querySelector(".navbar").offsetHeight;
+    document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+    document.querySelector(".dropDown").style.top = navbar + "px";
+})
+
 //--------------------
 
 //------------------

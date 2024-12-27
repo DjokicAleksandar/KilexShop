@@ -188,18 +188,17 @@ body::-webkit-scrollbar {
 .dropDownElements{
     list-style: none;
     display: flex;
-    flex-direction: column;
 }
 
 .dropDownElement{
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #dab684;
     padding: 20px 40px 20px 40px;
     user-select: none;
     font-weight: 300;
 }
 
-#pocetna, #kontakt{
+#pocetna, #kontakt, #oNama{
     border-bottom: 1px solid #dab684;
 }
 
@@ -681,8 +680,8 @@ body::-webkit-scrollbar {
 }
 
 .footerContact img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .footerContact a:hover h3{
@@ -1022,7 +1021,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
 
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .discountMessage div{
@@ -1064,6 +1063,20 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 900px) {
     .items{
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* drop down menu */
+
+    .dropDownElements{
+        flex-direction: column;
+    }
+
+    .dropDownElement{
+        font-size: 1.3rem;
+    }
+
+    #oNama{
+        border-bottom: none;
     }
 }
 
