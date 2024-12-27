@@ -513,6 +513,8 @@ tbody{
 
 .popUpBody h3{
     margin-top: 10px;
+    font-weight: 300;
+    text-align: center;
 }
 
 .popUpBody .closeBtn{

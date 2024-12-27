@@ -215,6 +215,18 @@ function Validate()
 
     if(isValid)
     {
+        const now = new Date();
+            
+        const year = now.getFullYear(); // Godina (npr. 2024)
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Mesec (1-12), dodaj nulu ako je potrebno
+        const day = String(now.getDate()).padStart(2, '0'); // Dan u mesecu (1-31), dodaj nulu ako je potrebno
+        const hours = String(now.getHours()).padStart(2, '0'); // Sati (0-23), dodaj nulu ako je potrebno
+        const minutes = String(now.getMinutes()).padStart(2, '0'); // Minuti (0-59), dodaj nulu ako je potrebno
+
+        // Formatiranje u željeni format "YYYY-MM-DD HH:MM"
+        const date = `${year}. ${month}. ${day}`;
+        const time = `${hours}:${minutes}`;
+
         let paramsForSeki = {
             from_name: "Kilex - Store",
             buyerName: firstName + " " + lastName,
@@ -222,10 +234,12 @@ function Validate()
             buyerAdress: adress + ", " + posta + ", " + city,
             phoneNumber: phone,
             productName: productNamesFormated,
-            totalPrice: totalPrice + "RSD"
+            totalPrice: totalPrice + "RSD",
+            date: date,
+            time: time
         }
-        //emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
-        //})
+        emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
+        })
         
         let paramsForUser = {
             data: "https://imgur.com/gCC2Me2.png",
@@ -234,7 +248,9 @@ function Validate()
             productName: productNamesFormated,
             buyerEmail: email,
             buyerAdress: adress + ", " + posta + ", " + city,
-            totalPrice: totalPrice + " RSD"
+            totalPrice: totalPrice + " RSD",
+            date: date,
+            time: time
         };
     
         emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
