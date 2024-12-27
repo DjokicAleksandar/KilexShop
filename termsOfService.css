@@ -279,7 +279,74 @@ body::-webkit-scrollbar {
 
 /* content */ 
 
+ul{
+    margin-left: 20px;
+}
 
+li{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dab684;
+}
+
+h4{
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.close{
+    position: absolute;
+    right: 0;
+    top: -25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.close:hover{
+    text-decoration: underline;
+    text-decoration-color: #dab684;
+}
+
+.close img{
+    height: 100%;
+    width: 25px;
+}
+
+.close p{
+    color: #dab684;
+    font-weight: 250;
+    font-size: 18px;
+}
+
+.naslov{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 90%;
+    border-bottom: 1px solid #dab684;
+}
+
+.uvod{
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 300;
+}
+
+.tekst{
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 300;
+}
 
 /* footer */
 

@@ -247,6 +247,9 @@ function Validate()
             document.body.classList.add("noScroll");
         });
     }
+    else{
+        document.querySelector(".form").scrollIntoView({ behavior: "smooth" });
+    }
 }
 
 //------------
