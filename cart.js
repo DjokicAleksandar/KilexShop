@@ -61,7 +61,23 @@ else{
 window.addEventListener("DOMContentLoaded", function(){
     var navbar = document.querySelector(".navbar").offsetHeight;
     document.querySelector(".container").style.marginTop = navbar + "px";
-    document.querySelector(".dropDown").style.top = navbar + "px";
+    if (window.innerWidth <= 900){
+        document.querySelector(".dropDown").style.top = navbar + "px";
+    }
+    else{
+        document.querySelector(".dropDown").style.top = 0 + "px";
+    }
+})
+
+window.addEventListener("resize", function(){
+    var navbar = document.querySelector(".navbar").offsetHeight;
+    document.querySelector(".container").style.marginTop = navbar + "px";
+    if (window.innerWidth <= 900){
+        document.querySelector(".dropDown").style.top = navbar + "px";
+    }
+    else{
+        document.querySelector(".dropDown").style.top = 0 + "px";
+    }
 })
 
 //---------------
@@ -236,8 +252,45 @@ function Validate()
 //------------
 //menu icon
 
-const icoMenu = document.querySelector(".icoMenu");
+function DropDownForPC(){
+    if (window.innerWidth <= 900){
+        icoMenu.style.visibility = "visible";
+    
+        dropDown.classList.remove("show");
+        dropDown.classList.add("hide");
+        icoMenu.classList.remove("active");
+        dropDown.style.transition = "1s";
+    
+        icoMenu.addEventListener("click", function(){
+            if (dropDown.classList.contains("show")){
+                dropDown.style.transition = "1s";
+                dropDown.classList.remove("show");
+                dropDown.classList.add("hide");
+                icoMenu.classList.remove("active");
+            }
+            else{
+            dropDown.style.transition = ".2s";
+            dropDown.classList.remove("hide");
+            dropDown.classList.add("show");
+            icoMenu.classList.add("active");
+            }
+        })
+    
+        dropDown.addEventListener("click", () => {
+            dropDown.style.transition = "1s";
+            dropDown.classList.remove("show");
+            dropDown.classList.add("hide");
+            icoMenu.classList.remove("active");
+        })
+    }
+    else{
+        icoMenu.style.visibility = "hidden";
+        dropDown.classList.remove("hide");
+        dropDown.classList.add("show");
+    }
+}
 
+const icoMenu = document.querySelector(".icoMenu");
 const cartIcon = document.querySelector(".icoCart");
 
 cartIcon.addEventListener("click", () => {
@@ -252,26 +305,16 @@ dropDown.classList.add("hide");
 icoMenu.classList.remove("active");
 dropDown.style.transition = "1s";
 
-icoMenu.addEventListener("click", function(){
-    if (dropDown.classList.contains("show")){
-        dropDown.style.transition = "1s";
-        dropDown.classList.remove("show");
-        dropDown.classList.add("hide");
-        icoMenu.classList.remove("active");
-    }
-    else{
-    dropDown.style.transition = ".2s";
-    dropDown.classList.remove("hide");
-    dropDown.classList.add("show");
-    icoMenu.classList.add("active");
-    }
+window.addEventListener("resize", () => {
+    DropDownForPC();
 })
 
-dropDown.addEventListener("click", () => {
-    dropDown.style.transition = "1s";
-    dropDown.classList.remove("show");
-    dropDown.classList.add("hide");
-    icoMenu.classList.remove("active");
+window.addEventListener("DOMContentLoaded", () => {
+    DropDownForPC();
+})
+
+icoMenu.addEventListener("click", () => {
+    DropDownForPC();
 })
 
 const pocetna = document.querySelector("#pocetna");
@@ -296,10 +339,12 @@ oNamaWindow.classList.remove("show");
 document.body.classList.remove("noScroll");
 
 oNama.addEventListener("click", () => { //o nama prozor
-    dropDown.style.transition = "1s";
-    dropDown.classList.remove("show");
-    dropDown.classList.add("hide");
-    icoMenu.classList.remove("active");
+    if (window.innerWidth <= 900){
+        dropDown.style.transition = "1s";
+        dropDown.classList.remove("show");
+        dropDown.classList.add("hide");
+        icoMenu.classList.remove("active");
+    }
 
     oNamaWindow.classList.remove("hide");
     oNamaWindow.classList.add("show");
