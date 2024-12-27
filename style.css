@@ -105,7 +105,6 @@ body::-webkit-scrollbar {
     margin-top: 60px;
     padding: 10px;
     overflow-x: hidden;
-    font-weight: 300;
 }
 
 .oNamaNaslov{
@@ -117,6 +116,7 @@ body::-webkit-scrollbar {
 .oNamaTextDiv{
     overflow-y: auto;
     height: 100%;
+    font-weight: 300;
 }
 
 .oNama.show{

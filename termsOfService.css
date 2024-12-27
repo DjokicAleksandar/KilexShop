@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+    color: #0f0904;
+    user-select: none;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-color: #FFF;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.noScroll{
+    overflow: hidden;
+}
+
+#loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFF;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loaderAnimation {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #dab684;
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
+
+  .oNama{
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: 1s;
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oNamaContent{
+    position: relative;
+    background-color: #fff;
+    width: 50%;
+    height: 70%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.oNamaContent::-webkit-scrollbar{
+    display: none;
+}
+
+.oNamaNavbar{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #0f0904;
+    text-align: center;
+    padding: 10px;
+}
+
+.oNamaText{
+    margin-top: 60px;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.oNamaNaslov{
+    width: 90%;
+    border-bottom: 1px solid #dab684;
+    padding-bottom: 10px;
+}
+
+.oNamaTextDiv{
+    overflow-y: auto;
+    height: 100%;
+    font-weight: 300;
+}
+
+.oNama.show{
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.oNama.hide{
+    top: -100%;
+    opacity: 0;
+    visibility: hidden;
+} 
+  
+.navbar{
+    top: 0;
+    left: 0;
+    padding: 10px;
+    padding-left:20px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f0904;
+    transform: translateY(-100%);
+    animation: slideDown 1s forwards ease-in-out;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%); /* Početna pozicija van ekrana */
+    }
+    100% {
+        transform: translateY(0); /* Krajnja pozicija, meni na ekranu */
+    }
+}
+
+/* drop down menu */
+
+.dropDown{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: 1s;
+}
+
+.dropDown.hide{
+    left: -100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dropDown.show{
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropDownContent{
+    width: max-content;
+    /*background-color: #0f0904;*/
+    background-color: rgba(15, 9, 4, 0.75);
+    border-top: 1px solid #dab684;
+}
+
+.dropDownElements{
+    margin-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropDownElement{
+    font-size: 1.3rem;
+    color: #dab684;
+    padding: 20px 40px 20px 40px;
+    user-select: none;
+    font-weight: 300;
+}
+
+#pocetna, #kontakt{
+    border-bottom: 1px solid #dab684;
+}
+
+.dropDownElement:hover{
+    /*background-color: #1f1914;*/
+    background-color: rgba(15, 9, 4, 0.8);
+    color: #fff;
+    transition: .2s;
+}
+
+.icoMenu.active{
+    transform: rotateZ(90deg);
+}
+
+/* */
+
+.icoMenu{
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: .2s;
+}
+
+.icoMenuImage{
+    transition: .3s;
+}
+
+.icoMenuImage:hover{
+    transform: scale(1.1);
+}
+
+.logoNavBar{
+    user-select: none;
+}
+
+.icoCart{
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+}
+
+.icoCartImage{
+    transition: .3s;
+}
+
+.icoCartImage:hover{
+    transform: scale(1.1);
+}
+
+.cartNumber{
+    background-color: #b39167;
+    border-radius: 50%;
+    display: flex;
+    font-size: 12px;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+/* content */ 
+
+
+
+/* footer */
+
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    background-color: #0f0904;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.footerFirst{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 70%;
+    border-bottom: 1px solid #dab684;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.footerSecond{
+    width: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerSecond h2{
+    border-bottom: none;
+    color: gray;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.footerSecond a{
+    font-weight: 300;
+    text-decoration: none;
+    color: gray;
+}
+
+.footerSecond a:hover{
+    color: white;
+}
+
+.footerLinks{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.copyright{
+    color: gray;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.companyInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.logo a{
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo a:hover{
+    color: #dab684;
+}
+
+.logo img{
+    height: 80px;
+    width: 80px;
+}
+
+.footerText{
+    display: flex;
+}
+
+.footerText h3{
+    margin: 10px;
+    font-size: 15px;
+    color: #FFF;
+}
+
+.footerContact{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.footerContact a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.footerContact img{
+    width: 50px;
+    height: 50px;
+}
+
+.footerContact a:hover h3{
+    color: #dab684;
+}
+
+.footerContact h3{
+    font-weight: 400;
+}
+
+/* scrollbar */
+/* Stil za skrolbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* pozadina skrolbara */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px; 
+}
+
+/* klizac skrolbara */
+::-webkit-scrollbar-thumb {
+    background: #bcbbbb;
+    border-radius: 10px; 
+}
+
+/* Stil za klizac kada je izabran */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media screen and (max-width: 600px){
+    .logoNavBar img{
+        height: 40px;
+        width: 50px;
+    }
+
+    .icoMenu img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .icoCart img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .oNamaContent{
+        width: 80%;
+    }
+
+    .close img{
+        height: 20px;
+    }
+
+    .close p{
+        font-size: 14px;
+    }
+
+    .footer{
+        padding: 30px 10px 30px 10px;
+    }
+
+    .footerFirst{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+
+    .footerSecond{
+        width: 100%;
+    }
+
+    .footerSecond h2{
+        font-size: 20px;
+    }
+
+    .footerSecond a{
+        font-size: 15px;
+    }
+
+    .footerContact img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo img{
+        width: 50px;
+        height: 50px;   
+    }
+}
