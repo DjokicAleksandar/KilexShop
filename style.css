@@ -476,7 +476,6 @@ body::-webkit-scrollbar {
     padding: 20px; 
     max-height: 70vh;
     gap: 10px;
-      
     background-color: white;
     display: flex;
     justify-content: center;
@@ -1146,8 +1145,8 @@ body::-webkit-scrollbar {
     }
 
     .popUpCart .cartContent{
-        width: max-content;
-        padding: 20px 30px; 
+        width: 70%;
+        padding: 20px 20px; 
         max-height: 70vh;
         gap: 10px; 
         background-color: white;

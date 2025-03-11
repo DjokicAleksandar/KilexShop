@@ -110,7 +110,7 @@
                 <div class="phoneError error"></div>
             </div>
 
-            <h2 class="desc"> Polja pored kojih stoji * moraju biti popunjena! </h2>
+            <h2 class="desc"> Polja pored kojih stoji <div class="zvezdica">*</div> moraju biti popunjena! </h2>
 
         </div>
 
@@ -118,7 +118,7 @@
             <h1> Porudžbina: </h1>
 
             <table class="productList">
-                <tr>
+                <tr class="tbody">
                     <td class="header">Proizvod</td>
                     <td class="header">Cena</td>
                 </tr>
@@ -166,6 +166,7 @@
             </div>
 
             <div class="popUpBody">
+                <h2> Hvala na ukazanom poverenju! </h2>
                 <h3> Vaša narudžbina je uspešno poslata, proverite email! </h3>
 
                 <button class="closeBtn" id="closeBtnPoslata"> Zatvori </button>
@@ -231,5 +232,6 @@
       
 
     </div>
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
 </body>
 </html>

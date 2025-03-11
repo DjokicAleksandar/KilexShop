@@ -299,6 +299,10 @@ h1{
     padding-left: 10px;
 }
 
+input:focus{
+    background-color: #fff7eb;
+}
+
 .firstName h3, .lastName h3, .email h3, .city h3, .adress h3, .posta h3, .phone h3{
     display: flex;
     font-weight: 350;
@@ -307,6 +311,7 @@ h1{
 
 .zvezdica{
     color: rgb(247, 43, 43);
+    display: inline;
 }
 
 .desc{
@@ -511,6 +516,12 @@ tbody{
     gap: 20px;
 }
 
+.popUpBody h2{
+    margin-top: 10px;
+    font-weight: 300;
+    text-align: center;
+}
+
 .popUpBody h3{
     margin-top: 10px;
     font-weight: 300;
@@ -522,7 +533,7 @@ tbody{
     font-size: 1rem;
     padding: 5px 15px 5px 15px;
     margin-bottom: 10px;
-    color: #FFFECB;
+    color: #FFF;
     background-color: #0f0904;
     border-radius: 4px;
     cursor: pointer;
@@ -772,6 +783,10 @@ tbody{
 
     .oNamaContent{
         width: 80%;
+    }
+
+    .popUpContent{
+        width: 60%;
     }
 
     .close p{
