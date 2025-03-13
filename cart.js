@@ -317,6 +317,8 @@ async function Validate()
         const pdf = await GeneratePDF();
 
         async function sendOrder() {
+            //prikazi popUp za cekanje dok se izvrsi slanje na backend
+
             const orderData = {
               name: firstName + " " + lastName,
               email: email,
@@ -330,65 +332,30 @@ async function Validate()
             };
           
             try {
-              const response = await fetch("http://localhost:3000/send-email", {
+              const response = await fetch("https://kilexshop.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderData),
               });
           
               const data = await response.json();
-            } catch (error) {
+            } 
+            catch (error) {
               console.error("Greška:", error);
               popUpError.classList.add("show");
               popUpError.classList.remove("hide");
               document.body.classList.add("noScroll");
+            } 
+            finally {
+                //sakrij popUp 
             }
 
             popUpPoslata.classList.add("show");
             popUpPoslata.classList.remove("hide");
             document.body.classList.add("noScroll");
-        }
-        
-        //console.log(argsForPDF.productsForPDF);
-
+        }  
         sendOrder();
-        // let paramsForSeki = {
-        //     from_name: "Kilex - Store",
-        //     buyerName: firstName + " " + lastName,
-        //     buyerEmail: email,
-        //     buyerAdress: adress + ", " + posta + ", " + city,
-        //     phoneNumber: phone,
-        //     productName: productNamesFormated,
-        //     totalPrice: totalPrice + "RSD",
-        //     date: date,
-        //     time: time
-        // }
-        // emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
-        // })
-        
-        // let paramsForUser = {
-        //     data: "https://imgur.com/gCC2Me2.png",
-        //     from_name: "Kilex - Store",
-        //     buyerName: firstName + " " + lastName,
-        //     productName: productNamesFormated,
-        //     buyerEmail: email,
-        //     buyerAdress: adress + ", " + posta + ", " + city,
-        //     totalPrice: totalPrice + " RSD",
-        //     date: date,
-        //     time: time
-        // };
-        
-        // emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
-        //     popUpPoslata.classList.add("show");
-        //     popUpPoslata.classList.remove("hide");
-        //     document.body.classList.add("noScroll");
-        // }).catch(function (err) {
-        //     popUpError.classList.add("show");
-        //     popUpError.classList.remove("hide");
-        //     document.body.classList.add("noScroll");
-        // });
                 
-        
         //nakon uspesne validacije
         ClearInputs();
         document.querySelectorAll(".productList tr").forEach(row => {
