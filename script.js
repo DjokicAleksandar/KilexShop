@@ -12,8 +12,8 @@ function promeniSliku(){
     const slikaDruga = document.querySelector("#drugaVelikaSlika");
 
     if (window.innerWidth <= 600){
-        slikaPrva.src = 'Images/naslovnaSlika.JPG';
-        slikaDruga.src = 'Images/naslovnaSlika2.JPG';
+        slikaPrva.src = 'Images/naslovnaSlika.webp';
+        slikaDruga.src = 'Images/naslovnaSlika2.webp';
     }
     else{
         slikaPrva.src = 'Images/slika1.png';

@@ -63,8 +63,17 @@
 
         <div class="imageContainer">
             <div class="sliderNaslovne">
-                <img src="Images/slika1.png" class="velikaSlika" id="prvaVelikaSlika">
-                <img src="Images/slika1.png" class="velikaSlika" id="drugaVelikaSlika">
+                <!-- sredi slike za komp i za fon -->
+                <img src="Images/slika1.png"
+                srcset="Images/naslovnaSlikaCmp.webp 1000w, Images/naslovnaSlikaCmp.webp 2000w, Images/naslovnaSlikaCmp.webp 4000w" 
+                sizes="(max-width: 600px) 1000px, (max-width: 1200px) 2000px, 4000px"
+                class="velikaSlika" 
+                id="prvaVelikaSlika">   
+                <img src="Images/slika1.png"
+                srcset="Images/naslovnaSlika2Cmp.webp 1000w, Images/naslovnaSlika2Cmp.webp 2000w, Images/naslovnaSlika2Cmp.webp 4000w" 
+                sizes="(max-width: 600px) 1000px, (max-width: 1200px) 2000px, 4000px"
+                class="velikaSlika" id="drugaVelikaSlika">
+                <!--  -->
             </div>
         </div>
 

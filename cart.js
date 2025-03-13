@@ -1,16 +1,18 @@
 let selectedProducts = JSON.parse(localStorage.getItem("selectedProducts"));
 let allProducts = JSON.parse(localStorage.getItem("allProducts"));
 
-console.log(allProducts);
-
 let productList = document.querySelector(".productList");
 let totalPriceHTML = document.querySelector(".totalPrice");
 
 let totalPrice = 0;
 
 let productsForPDF = [];
+let productsForEmail = [];
 let priceForPDF;
 let argsForPDF = [];
+let totalPriceFormatedGlobal;
+
+let dostava = 300;
 
 if (selectedProducts && selectedProducts.length > 0)
 {
@@ -45,6 +47,7 @@ if (selectedProducts && selectedProducts.length > 0)
         productList.appendChild(newProduct);
 
         totalPrice += totalItemPrice;
+        totalPrice += dostava;
 
         const noviProizvod = {
             id: product.id,
@@ -54,19 +57,35 @@ if (selectedProducts && selectedProducts.length > 0)
             quantity: product.quantity
         }
 
+        const newProductForEmail = {
+            name: productName,
+            price: pricePerProduct,
+            quantity: product.quantity
+        }
+
         productsForPDF.push(noviProizvod);
+        productsForEmail.push(newProductForEmail);
     })
+
+    let dostavaRow = document.createElement("tr");
+    dostavaRow.innerHTML = `
+    <td> Dostava: </td>
+    <td> ${dostava} RSD </td>
+    `;
 
     let lastRow = document.createElement("tr");
     lastRow.classList.add("trUkupno");
     let totalPriceFormated = totalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0});
+    totalPriceFormatedGlobal = totalPriceFormated;
 
     lastRow.innerHTML = `
     <td class="ukupno"> <b> Ukupno: </b> </td>
     <td class="ukupnoCena"> <b> ${totalPriceFormated} RSD </b> </td>
     `;    
 
+    productList.appendChild(dostavaRow);
     productList.appendChild(lastRow);
+
 }
 else{
 
@@ -211,7 +230,7 @@ document.querySelectorAll("input").forEach(input => {
 //------------------
 
 //validation
-function Validate()
+async function Validate()
 {
     popUpPoslata.classList.remove("show");
     popUpPoslata.classList.add("hide");
@@ -276,7 +295,7 @@ function Validate()
     if (selectedProducts == null)
         isValid = false;
 
-    let addressForPDF = adress + " " + posta + " " + city;
+    let addressForPDF = adress + " " + posta + ", " + city;
 
     if(isValid)
     {
@@ -292,45 +311,82 @@ function Validate()
         const date = `${day}. ${month}. ${year}`;
         const time = `${hours}:${minutes}`;
 
-        argsForPDF = [
-            {ime: firstName, prezime: lastName, adresa: addressForPDF, telefon: phone, email: email, datum: date, vreme: time} 
-        ];
+        argsForPDF = {ime: firstName, prezime: lastName, adresa: addressForPDF, telefon: phone, 
+                email: email, datum: date, vreme: time, priceForPDF: priceForPDF, productsForPDF: productsForPDF};
 
-        let paramsForSeki = {
-            from_name: "Kilex - Store",
-            buyerName: firstName + " " + lastName,
-            buyerEmail: email,
-            buyerAdress: adress + ", " + posta + ", " + city,
-            phoneNumber: phone,
-            productName: productNamesFormated,
-            totalPrice: totalPrice + "RSD",
-            date: date,
-            time: time
-        }
-        emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
-        })
-        
-        let paramsForUser = {
-            data: "https://imgur.com/gCC2Me2.png",
-            from_name: "Kilex - Store",
-            buyerName: firstName + " " + lastName,
-            productName: productNamesFormated,
-            buyerEmail: email,
-            buyerAdress: adress + ", " + posta + ", " + city,
-            totalPrice: totalPrice + " RSD",
-            date: date,
-            time: time
-        };
-        
-        emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
+        const pdf = await GeneratePDF();
+
+        async function sendOrder() {
+            const orderData = {
+              name: firstName + " " + lastName,
+              email: email,
+              address: addressForPDF,
+              phone: phone,
+              date: date,
+              time: time,
+              products: productsForEmail,
+              totalPrice: totalPriceFormatedGlobal,
+              argsForPDF: pdf
+            };
+          
+            try {
+              const response = await fetch("http://localhost:3000/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData),
+              });
+          
+              const data = await response.json();
+            } catch (error) {
+              console.error("Greška:", error);
+              popUpError.classList.add("show");
+              popUpError.classList.remove("hide");
+              document.body.classList.add("noScroll");
+            }
+
             popUpPoslata.classList.add("show");
             popUpPoslata.classList.remove("hide");
             document.body.classList.add("noScroll");
-        }).catch(function (err) {
-            popUpError.classList.add("show");
-            popUpError.classList.remove("hide");
-            document.body.classList.add("noScroll");
-        });
+        }
+        
+        //console.log(argsForPDF.productsForPDF);
+
+        sendOrder();
+        // let paramsForSeki = {
+        //     from_name: "Kilex - Store",
+        //     buyerName: firstName + " " + lastName,
+        //     buyerEmail: email,
+        //     buyerAdress: adress + ", " + posta + ", " + city,
+        //     phoneNumber: phone,
+        //     productName: productNamesFormated,
+        //     totalPrice: totalPrice + "RSD",
+        //     date: date,
+        //     time: time
+        // }
+        // emailjs.send("service_8jgz5wn", "template_6o9qs5m", paramsForSeki).then(function (res){
+        // })
+        
+        // let paramsForUser = {
+        //     data: "https://imgur.com/gCC2Me2.png",
+        //     from_name: "Kilex - Store",
+        //     buyerName: firstName + " " + lastName,
+        //     productName: productNamesFormated,
+        //     buyerEmail: email,
+        //     buyerAdress: adress + ", " + posta + ", " + city,
+        //     totalPrice: totalPrice + " RSD",
+        //     date: date,
+        //     time: time
+        // };
+        
+        // emailjs.send("service_8jgz5wn", "template_7dn3b8c", paramsForUser).then(function (res) {
+        //     popUpPoslata.classList.add("show");
+        //     popUpPoslata.classList.remove("hide");
+        //     document.body.classList.add("noScroll");
+        // }).catch(function (err) {
+        //     popUpError.classList.add("show");
+        //     popUpError.classList.remove("hide");
+        //     document.body.classList.add("noScroll");
+        // });
                 
         
         //nakon uspesne validacije
@@ -467,131 +523,122 @@ oNamaContent.addEventListener("click", (event) => {
 })
 
 //----------------------
-//generisanje PDF
-function GeneratePDF() {
+
+async function GeneratePDF() {
+    var props = {
+        outputType: jsPDFInvoiceTemplate.OutputType.DataUriString,
+        //Allows for additional configuration prior to writing among others, adds support for different languages and symbols
+        returnJsPDFDocObject: true,
+        fileName: "Faktura",
+        orientationLandscape: false,
+        compress: true,
+        logo: {
+            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+            type: 'PNG', //optional, when src= data:uri (nodejs case)
+            width: 35.33, //aspect ratio = width/height
+            height: 26.66,
+            margin: {
+                top: 0, //negative or positive num, from the current position
+                left: 0 //negative or positive num, from the current position
+            }
+        },
+        stamp: {
+            inAllPages: true, //by default = false, just in the last page
+            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+            type: 'JPG', //optional, when src= data:uri (nodejs case)
+            width: 20, //aspect ratio = width/height
+            height: 20,
+            margin: {
+                top: 0, //negative or positive num, from the current position
+                left: 0 //negative or positive num, from the current position
+            }
+        },
+        business: {
+            name: "Kilex",
+            address: "Srbija, Stajkovce",
+            phone: "+381 62 176 7144",
+            email: "kilexxx0@gmail.com",
+            website: "www.kilex.com",
+        },
+        contact: {
+            label: "Faktura za:",
+            name: argsForPDF.ime + " " + argsForPDF.prezime,
+            address: argsForPDF.adresa,
+            phone: argsForPDF.telefon,
+            email: argsForPDF.email,
+        },
+        invoice: {
+            //label: "Invoice #: ",
+            //num: 19,
+            invDate: "Datum izdavanja: " + argsForPDF.datum + ", " + argsForPDF.vreme,
+            //invGenDate: "Invoice Date: 02/02/2021 10:17",
+            headerBorder: false,
+            tableBodyBorder: false,
+            header: [
+              {
+                title: "#", 
+                style: { 
+                  width: 10 
+                } 
+              }, 
+              { 
+                title: "Proizvodi",
+                style: {
+                  width: 30
+                } 
+              }, 
+              { 
+                title: "Opis",
+                style: {
+                  width: 80
+                } 
+              }, 
+              { title: "Cena"},
+              { title: "Kolicina"},
+              //{ title: "Unit"},
+              { title: "Ukupno"}
+            ],
+            table: productsForPDF.map((product, index) => ([
+                index + 1,               // Redni broj
+                product.name,            // Naziv proizvoda
+                product.description,     // Opis proizvoda
+                product.price,           // Cena
+                product.quantity,        // Količina
+                product.price * product.quantity // Ukupna cena
+            ])),
+            additionalRows: [{
+                col1: 'Dostava: ',
+                col2: String(dostava),
+                col3: 'DIN',
+                style: {
+                    fontSize: 10 //optional, default 12
+                }
+            },
+            {
+                col1: 'Ukupno: ',
+                col2: totalPriceFormatedGlobal,
+                col3: 'DIN',
+                style: {
+                    fontSize: 14 //optional, default 12
+                }
+            }],
+            invDescLabel: "Napomena: ",
+            invDesc: "U slucaju reklamacije, molimo Vas da nas kontaktirate na kilexxx0@gmail.com ili putem Whatsapp ili Vibera na broj +381 62 176 7144",
+        },
+        footer: {
+            text: "Faktura je generisana na racunaru i validna je bez potpisa ili pecata.",
+        },
+        pageEnable: true,
+        pageLabel: "Page ",
+    };
+
+    console.log(props.invoice.additionalRows[0].col1);
+
     const pdfObject = jsPDFInvoiceTemplate.default(props);
 
     const jsPDFInstance = pdfObject.jsPDFDocObject; // Ovo vraća stvarni jsPDF objekat
 
-    const pdfBase64 = jsPDFInstance.output('datauristring'); // Kreiranje Base64 stringa
-    //samo je ostalo da se ovo prosledi kao atachment korisniku na mejl
+    const pdfBase64 = jsPDFInstance.output('datauristring').split(",")[1]; // Kreiranje Base64 stringa
+
+    return pdfBase64;
 }
-
-document.querySelector(".order").addEventListener("click", () => {
-    GeneratePDF();
-})
-
-var props = {
-    outputType: jsPDFInvoiceTemplate.OutputType.DataUriString,
-    //Allows for additional configuration prior to writing among others, adds support for different languages and symbols
-    returnJsPDFDocObject: true,
-    fileName: "Faktura",
-    orientationLandscape: false,
-    compress: true,
-    logo: {
-        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-        type: 'PNG', //optional, when src= data:uri (nodejs case)
-        width: 35.33, //aspect ratio = width/height
-        height: 26.66,
-        margin: {
-            top: 0, //negative or positive num, from the current position
-            left: 0 //negative or positive num, from the current position
-        }
-    },
-    stamp: {
-        inAllPages: true, //by default = false, just in the last page
-        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-        type: 'JPG', //optional, when src= data:uri (nodejs case)
-        width: 20, //aspect ratio = width/height
-        height: 20,
-        margin: {
-            top: 0, //negative or positive num, from the current position
-            left: 0 //negative or positive num, from the current position
-        }
-    },
-    business: {
-        name: "Kilex",
-        address: "Srbija, Stajkovce",
-        phone: "+381 62 176 7144",
-        email: "kilexxx0@gmail.com",
-        website: "www.kilex.co",
-    },
-    contact: {
-        label: "Faktura za:",
-        name: argsForPDF.ime + " " + argsForPDF.prezime,
-        address: argsForPDF.adresa,
-        phone: argsForPDF.phone,
-        email: argsForPDF.email,
-    },
-    invoice: {
-        //label: "Invoice #: ",
-        //num: 19,
-        invDate: "Datum izdavanja:" + argsForPDF.datum + " " + argsForPDF.vreme,
-        //invGenDate: "Invoice Date: 02/02/2021 10:17",
-        headerBorder: false,
-        tableBodyBorder: false,
-        header: [
-          {
-            title: "#", 
-            style: { 
-              width: 10 
-            } 
-          }, 
-          { 
-            title: "Proizvodi",
-            style: {
-              width: 30
-            } 
-          }, 
-          { 
-            title: "Opis",
-            style: {
-              width: 80
-            } 
-          }, 
-          { title: "Cena"},
-          { title: "Kolicina"},
-          //{ title: "Unit"},
-          { title: "Ukupno"}
-        ],
-        table: productsForPDF.map((product, index) => ([
-            index + 1,               // Redni broj
-            product.name,            // Naziv proizvoda
-            product.description,     // Opis proizvoda
-            product.price,           // Cena
-            product.quantity,        // Količina
-            product.price * product.quantity // Ukupna cena
-        ])),
-        additionalRows: [{
-            col1: 'Ukupno:',
-            col2: priceForPDF,
-            col3: 'ALL',
-            style: {
-                fontSize: 14 //optional, default 12
-            }
-        },
-        {
-            col1: 'VAT:',
-            col2: '20',
-            col3: '%',
-            style: {
-                fontSize: 10 //optional, default 12
-            }
-        },
-        {
-            col1: 'SubTotal:',
-            col2: '116,199.90',
-            col3: 'ALL',
-            style: {
-                fontSize: 10 //optional, default 12
-            }
-        }],
-        invDescLabel: "Napomena: ",
-        invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
-    },
-    footer: {
-        text: "Faktura je generisana na racunaru i validna je bez potpisa ili pecata.",
-    },
-    pageEnable: true,
-    pageLabel: "Page ",
-};
