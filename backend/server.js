@@ -21,6 +21,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get("/", (req, res) => {
+  res.send("Server je pokrenut i radi!");
+});
+
 // Ruta za slanje mejla
 app.post("/send-email", async (req, res) => {
   console.log("podaci: " + req.body);
