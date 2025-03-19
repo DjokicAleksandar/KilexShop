@@ -339,13 +339,26 @@ async function Validate()
             };
           
             try {
-              const response = await fetch("https://kilexshop.onrender.com", {
+              const response = await fetch("https://kilexshop.onrender.com/send-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderData),
               });
           
-              const data = await response.json();
+              if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+              }
+
+              const contentType = response.headers.get("content-type");
+
+              if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                console.log("Parsed JSON: ", data)
+              } else {
+                const text = await response.text(); // Ako nije JSON, pročitaj kao tekst
+                console.error("Unexpected response (not JSON):", text);
+              }
+
             } 
             catch (error) {
               console.error("Greška:", error);
@@ -355,7 +368,6 @@ async function Validate()
             } 
             finally{
                 //sakrij popUp 
-                console.log("aca");
                 popUpLoading.classList.add("hide");
                 popUpLoading.classList.remove("show");
                 document.body.classList.remove("noScroll");
