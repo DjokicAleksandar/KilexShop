@@ -153,6 +153,9 @@ const closeBtnError = document.querySelector("#closeBtnError");
 
 const popUpPoslata = document.querySelector(".popUpPoslata");
 const popUpError = document.querySelector(".popUpError");
+const popUpLoading = document.querySelector(".popUpLoading");
+
+const orderButton = document.querySelector(".order");
 
 closeBtnPoslata.addEventListener("click", () => {
     popUpPoslata.classList.remove("show");
@@ -318,6 +321,10 @@ async function Validate()
 
         async function sendOrder() {
             //prikazi popUp za cekanje dok se izvrsi slanje na backend
+            popUpLoading.classList.add("show");
+            popUpLoading.classList.remove("hide");
+            document.body.classList.add("noScroll");
+            orderButton.disabled = true;
 
             const orderData = {
               name: firstName + " " + lastName,
@@ -346,8 +353,13 @@ async function Validate()
               popUpError.classList.remove("hide");
               document.body.classList.add("noScroll");
             } 
-            finally {
+            finally{
                 //sakrij popUp 
+                console.log("aca");
+                popUpLoading.classList.add("hide");
+                popUpLoading.classList.remove("show");
+                document.body.classList.remove("noScroll");
+                orderButton.disabled = false;
             }
 
             popUpPoslata.classList.add("show");
@@ -598,8 +610,6 @@ async function GeneratePDF() {
         pageEnable: true,
         pageLabel: "Page ",
     };
-
-    console.log(props.invoice.additionalRows[0].col1);
 
     const pdfObject = jsPDFInvoiceTemplate.default(props);
 
