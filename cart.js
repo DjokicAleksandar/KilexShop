@@ -347,10 +347,12 @@ async function Validate()
                     body: JSON.stringify(orderData),
                 });
             
-                if (!response.success) {
+                if (!response.ok) {
                     popUpError.classList.add("show");
                     popUpError.classList.remove("hide");
                     document.body.classList.add("noScroll");
+                    document.querySelector(".form").scrollIntoView({ behavior: "smooth" });
+                    console.log("greska u response ", response)
                 }   
                 else {
                     popUpPoslata.classList.add("show");
@@ -365,6 +367,7 @@ async function Validate()
                 popUpError.classList.remove("hide");
                 document.body.classList.add("noScroll");
                 document.querySelector(".form").scrollIntoView({ behavior: "smooth" });
+                console.log("Greska u try catch")
             } 
             finally{
                 //sakrij popUp 
