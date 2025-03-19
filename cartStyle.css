@@ -413,7 +413,6 @@ tbody{
 .moreInfo{
     width: 100%;
     gap: 20px;
-    border: 1px solid #dab684;
     padding: 10px;
     display: flex;
     flex-direction: column;

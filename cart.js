@@ -47,7 +47,6 @@ if (selectedProducts && selectedProducts.length > 0)
         productList.appendChild(newProduct);
 
         totalPrice += totalItemPrice;
-        totalPrice += dostava;
 
         const noviProizvod = {
             id: product.id,
@@ -67,11 +66,7 @@ if (selectedProducts && selectedProducts.length > 0)
         productsForEmail.push(newProductForEmail);
     })
 
-    let dostavaRow = document.createElement("tr");
-    dostavaRow.innerHTML = `
-    <td> Dostava: </td>
-    <td> ${dostava} RSD </td>
-    `;
+    totalPrice += dostava;
 
     let lastRow = document.createElement("tr");
     lastRow.classList.add("trUkupno");
@@ -83,12 +78,10 @@ if (selectedProducts && selectedProducts.length > 0)
     <td class="ukupnoCena"> <b> ${totalPriceFormated} RSD </b> </td>
     `;    
 
-    productList.appendChild(dostavaRow);
     productList.appendChild(lastRow);
-
 }
 else{
-
+    window.location.href = "index.html";
 }
 
 //totalPriceHTML.innerText = totalPrice.toLocaleString("de-DE", {minimumFractionDigits: 0});
@@ -201,6 +194,14 @@ function ClearInputs() {
     let city = document.querySelector("#city").value = "";
     let adress = document.querySelector("#adress").value = "";
     let posta = document.querySelector("#posta").value = "";
+
+    document.querySelectorAll(".productList tr").forEach(row => {
+        if (!row.classList.contains("trUkupno") && !row.classList.contains("tbody"))
+            row.innerHTML = "";
+    })
+
+    localStorage.removeItem("selectedProducts");
+    selectedProducts = [];
 }
 //---------------
 
@@ -327,44 +328,43 @@ async function Validate()
             orderButton.disabled = true;
 
             const orderData = {
-              name: firstName + " " + lastName,
-              email: email,
-              address: addressForPDF,
-              phone: phone,
-              date: date,
-              time: time,
-              products: productsForEmail,
-              totalPrice: totalPriceFormatedGlobal,
-              argsForPDF: pdf
+                name: firstName + " " + lastName,
+                email: email,
+                address: addressForPDF,
+                phone: phone,
+                date: date,
+                time: time,
+                products: productsForEmail,
+                totalPrice: totalPriceFormatedGlobal,
+                argsForPDF: pdf
             };
           
             try {
-              const response = await fetch("https://kilexshop.onrender.com/send-email", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(orderData),
-              });
-          
-              if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
-              }
-
-              const contentType = response.headers.get("content-type");
-
-              if (contentType && contentType.includes("application/json")) {
-                const data = await response.json();
-                console.log("Parsed JSON: ", data)
-              } else {
-                const text = await response.text(); // Ako nije JSON, pročitaj kao tekst
-                console.error("Unexpected response (not JSON):", text);
-              }
-
+                // https://kilexshop.onrender.com/send-email , http://localhost:3000/send-email
+                const response = await fetch("https://kilexshop.onrender.com/send-email", { 
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(orderData),
+                });
+            
+                if (!response.success) {
+                    popUpError.classList.add("show");
+                    popUpError.classList.remove("hide");
+                    document.body.classList.add("noScroll");
+                }   
+                else {
+                    popUpPoslata.classList.add("show");
+                    popUpPoslata.classList.remove("hide");
+                    document.body.classList.add("noScroll");
+                    //nakon uspesne validacije
+                    ClearInputs();
+                }
             } 
             catch (error) {
-              console.error("Greška:", error);
-              popUpError.classList.add("show");
-              popUpError.classList.remove("hide");
-              document.body.classList.add("noScroll");
+                popUpError.classList.add("show");
+                popUpError.classList.remove("hide");
+                document.body.classList.add("noScroll");
+                document.querySelector(".form").scrollIntoView({ behavior: "smooth" });
             } 
             finally{
                 //sakrij popUp 
@@ -373,22 +373,9 @@ async function Validate()
                 document.body.classList.remove("noScroll");
                 orderButton.disabled = false;
             }
-
-            popUpPoslata.classList.add("show");
-            popUpPoslata.classList.remove("hide");
-            document.body.classList.add("noScroll");
         }  
-        sendOrder();
-                
-        //nakon uspesne validacije
-        ClearInputs();
-        document.querySelectorAll(".productList tr").forEach(row => {
-            if (!row.classList.contains("trUkupno") && !row.classList.contains("tbody"))
-                row.innerHTML = "";
-        })
 
-        localStorage.removeItem("selectedProducts");
-        selectedProducts = [];
+        sendOrder();
     }
     else{
         document.querySelector(".form").scrollIntoView({ behavior: "smooth" });
