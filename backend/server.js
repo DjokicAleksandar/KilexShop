@@ -36,7 +36,11 @@ app.post("/send-email", async (req, res) => {
 
   // Kreiranje HTML sadrzaja za email
   const productList = products
-    .map((p) => `<li> <b> ${p.name} x ${p.quantity}, ${p.quantity * p.price} RSD </b> </li>`)
+    .map((p) => `<tr> 
+    <td style="text-align: left;"> <b> ${p.name} </b> </td> 
+    <td style="text-align: center;"> <b> x ${p.quantity}, </b> </td>
+    <td style="text-align: right;"> <b> ${p.quantity * p.price} RSD </b> <td> 
+    </tr>`)
     .join("");
 
   const mailOptions = {
@@ -46,11 +50,32 @@ app.post("/send-email", async (req, res) => {
     html: `
       <h2 style="color: black;">Pozdrav, ${name}!</h2>
       <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. Detalji porudžbine su:</h3>
-      <ul style="list-style: none; font-size: 20px; color: black;">${productList}</ul>
+      <table style="font-size: 20px; color: black;">${productList}</table>
       <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice} </strong> RSD</h3>
       <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${time} </strong> </p>
       <p style="color: black;">Adresa dostave: <strong>${address}</strong></p>
       <p style="color: black;">Vaša porudžbina će uskoro biti obrađena.</p>
+    `,
+    attachments: [
+        {
+            filename: "faktura.pdf",
+            content: Buffer.from(argsForPDF, "base64"),
+            encoding: "base64",
+        }
+    ]
+  };
+
+  const mailOptionsSeki = {
+    from: `"Kilex - store" <${process.env.EMAIL_USER}>`,
+    to: "kilexxx0@gmail.com",
+    subject: "Potvrda porudžbine",
+    html: `
+      <h2 style="color: black;">Korisnik: ${name}!</h2>
+      <h3 style="color: black;">Detalji porudžbine su:</h3>
+      <table style="font-size: 20px; color: black;">${productList}</table>
+      <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice} </strong> RSD</h3>
+      <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${time} </strong> </p>
+      <p style="color: black;">Adresa dostave: <strong>${address}</strong></p>
     `,
     attachments: [
         {
@@ -68,6 +93,13 @@ app.post("/send-email", async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, message: "Greška pri slanju emaila." });
   }
+
+  // try {
+  //   await transporter.sendMail(mailOptionsSeki);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+
 });
 
 // Pokretanje servera

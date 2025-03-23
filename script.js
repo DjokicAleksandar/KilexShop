@@ -1,19 +1,48 @@
-//loader
+//------
+//slika za fon
+
+//loading
+function SkeletonLoading() {
+    let skeletonItems = document.querySelector(".items-skeleton");
+
+    for (let i = 0; i < 6; i++) {
+        let newSkeletonItem = document.createElement("div");
+        newSkeletonItem.innerHTML = `
+            <div class="itemLink-skeleton skeleton-text-link skeleton">
+                        <img class="itemImage" draggable="false">
+                        <div class="discountMessage"> <div class="procenat"></div> </div>
+                    </div>
+                    <p class="itemBadge-skeleton skeleton-text skeleton">  </p>
+                    <h2 class="itemName-skeleton skeleton-text skeleton">  </h2>
+                    <div class="prices-skeleton skeleton-text skeleton">
+                        <h3 class="itemPrice-skeleton">  </h3>
+                        <h3 class="itemPriceDiscount-skeleton">  </h3>
+                    </div>
+                    <div class="addToCartButton-skeleton skeleton-text-button skeleton">  </div>
+        `;
+
+        newSkeletonItem.classList.add("item-skeleton")
+        skeletonItems.appendChild(newSkeletonItem);
+    } 
+}
+
+SkeletonLoading();
+
+// //loader
 window.onload = () => {
-    const loadingScreen = document.getElementById("loader");
+    const loadingScreen = document.querySelector(".skeleton-card");
     loadingScreen.style.display = 'none';
 }
 
-//------
-//slika za fon
+//---------------
 
 function promeniSliku(){
     const slikaPrva = document.querySelector("#prvaVelikaSlika");
     const slikaDruga = document.querySelector("#drugaVelikaSlika");
 
     if (window.innerWidth <= 600){
-        slikaPrva.src = 'Images/naslovnaSlika.webp';
-        slikaDruga.src = 'Images/naslovnaSlika2.webp';
+        slikaPrva.src = 'Images/naslovnaSlikaCmp.webp';
+        slikaDruga.src = 'Images/naslovnaSlika2mp.webp';
     }
     else{
         slikaPrva.src = 'Images/slika1.png';
@@ -119,23 +148,22 @@ const addDataToHTML = () => {
         let i = 0;
 
         listProduct.forEach(product => {
-            i = i + 1;
             let newProduct = document.createElement('li');
             newProduct.classList.add('item');
             newProduct.dataset.id = product.id;
-
+            
             //cena sa popustom
             let discount = (product.discount / 100);
             let newPrice = product.price - product.price * discount;
 
             //kreira proizvod 
-            newProduct.innerHTML = `<a href="#" class="itemLink" id="LI${i}">
-                    <img src="${product.image}" class="itemImage" draggable="false">
-                </a>
-                <p class="itemBadge"> Trepavice </p>
+            newProduct.innerHTML = `<a href="#" class="itemLink" id="${i}">
+            <img src="${product.image}" class="itemImage" draggable="false">
+            </a>
+            <p class="itemBadge"> Trepavice </p>
                 <h2 class="itemName"> ${product.name} </h2>
                 <div class="prices">
-                    <h3 class="itemPrice"> ${product.price} RSD </h3>
+                <h3 class="itemPrice"> ${product.price} RSD </h3>
                 </div>
                 <button class="addToCartButton"> DODAJ U KORPU </button>
                 <div class="productStripe">  </div>
@@ -144,6 +172,7 @@ const addDataToHTML = () => {
 
             listProductHTML.appendChild(newProduct);
             newProduct.querySelector(".addToCartButton").disabled = false;
+            i = i + 1;
 
             if (newPrice != product.price){ //ako postoji popust
                 //slicica procenat
@@ -182,7 +211,6 @@ const addDataToHTML = () => {
                 
                 notAvailableDiv.classList.remove("hide");
                 notAvailableDiv.classList.add("show");
-
             }
         })
     }
@@ -214,7 +242,6 @@ const addToCart = (productId) => {
 }
 
 const addCartToMemory = () => {
-    //24:55
     localStorage.setItem('cart', JSON.stringify(carts));
 }
 
@@ -253,7 +280,7 @@ const addCartToHTML = () => {
                     `
                 <div class="itemInfo">
                     <div class="cartItemImage">
-                        <img src="${info.image}" height="50px">
+                        <img src="${info.image}" height="50px" loading="lazy">
                     </div>
                     <div class="cartItemName">
                         ${info.name}
@@ -576,65 +603,24 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
     const popUpProduct = document.querySelector('.popUpProduct');
     const popUpContent = document.querySelector('.popUpProductContent');
     const sliderImages = document.querySelectorAll('.slider img');
-    const sliderNavLinks = document.querySelectorAll('.sliderNav a');
     const productName = document.querySelector('.popUpProductName');
+    const description = document.querySelector('.description');
     const closeSecond = document.querySelector('.closeSecond');
-
-    const productMap = {
-        LI1: {
-            name: 'Tr1',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI2: {
-            name: 'Tr2',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI3: {
-            name: 'Tr3',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI4: {
-            name: 'Tr4',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI5: {
-            name: 'Tr5',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI6: {
-            name: 'Tr6',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI7: {
-            name: 'Tr7',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI8: {
-            name: 'Tr8',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI9: {
-            name: 'Tr9',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        },
-        LI10: {
-            name: 'Tr10',
-            images: ['Images/Eyelash/K2-kutija-Copy.jpg', 'Images/Eyelash/K2-cela-Copy.jpg', 'Images/Eyelash/K2-obe-Copy.jpg']
-        }
-    };
 
     document.querySelectorAll('.itemLink').forEach(link => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
 
             const linkId = link.id;
-            const eyelash = productMap[linkId];
+            const eyelash = listProduct[linkId];
 
             if (eyelash) {
                 sliderImages.forEach((img, index) => {
-                  img.src = eyelash.images[index];  
+                  img.src = eyelash.images[index]; 
+                  img.setAttribute("loading", "lazy"); 
 
                   productName.textContent = eyelash.name;
+                  description.textContent = eyelash.description;
                 });
 
                 //prikaz 
@@ -667,7 +653,6 @@ document.addEventListener('scroll', function() { //los nacin sa scroll, ispravi!
 })
 
 //MENJANJE TACKICA ISPOD SLIKE
-
 const slider = document.querySelector('.slider');
 const navDots = document.querySelectorAll('.sliderNav a');
 

@@ -123,22 +123,6 @@ productElements.forEach(function(element){
 let productNamesFormated = productNames.join(', ');
 
 //------------------
-
-//base64 za sliku
-function convertImageToBase64(imagePath, callback) {
-    const xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        const reader = new FileReader();
-        reader.onloadend = function() {
-            callback(reader.result);
-        };
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', imagePath);
-    xhr.responseType = 'blob';
-    xhr.send();
-}
-
 //popUp prozori nakon validacije
 
 const closeBtnPoslata = document.querySelector("#closeBtnPoslata");
@@ -319,6 +303,8 @@ async function Validate()
                 email: email, datum: date, vreme: time, priceForPDF: priceForPDF, productsForPDF: productsForPDF};
 
         const pdf = await GeneratePDF();
+        
+        console.log("posle generate pdf")
 
         async function sendOrder() {
             //prikazi popUp za cekanje dok se izvrsi slanje na backend
@@ -504,8 +490,22 @@ oNamaContent.addEventListener("click", (event) => {
 })
 
 //----------------------
-
 async function GeneratePDF() {
+    let logoImg = "";
+
+    async function loadLogo() {
+        try {
+            let response = await fetch("assets/logoBase64.json");
+            let data = await response.json();
+            return data.logo;
+        } catch (error) {
+            console.log("Greška prilikom učitavanja logoa:", error);
+            return "";
+        }
+    }
+
+    logoImg = await loadLogo();
+
     var props = {
         outputType: jsPDFInvoiceTemplate.OutputType.DataUriString,
         //Allows for additional configuration prior to writing among others, adds support for different languages and symbols
@@ -514,21 +514,10 @@ async function GeneratePDF() {
         orientationLandscape: false,
         compress: true,
         logo: {
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+            src: logoImg,
             type: 'PNG', //optional, when src= data:uri (nodejs case)
-            width: 35.33, //aspect ratio = width/height
+            width: 30, //aspect ratio = width/height
             height: 26.66,
-            margin: {
-                top: 0, //negative or positive num, from the current position
-                left: 0 //negative or positive num, from the current position
-            }
-        },
-        stamp: {
-            inAllPages: true, //by default = false, just in the last page
-            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-            type: 'JPG', //optional, when src= data:uri (nodejs case)
-            width: 20, //aspect ratio = width/height
-            height: 20,
             margin: {
                 top: 0, //negative or positive num, from the current position
                 left: 0 //negative or positive num, from the current position
@@ -556,28 +545,28 @@ async function GeneratePDF() {
             headerBorder: false,
             tableBodyBorder: false,
             header: [
-              {
+            {
                 title: "#", 
                 style: { 
-                  width: 10 
+                width: 10 
                 } 
-              }, 
-              { 
+            }, 
+            { 
                 title: "Proizvodi",
                 style: {
-                  width: 30
+                width: 30
                 } 
-              }, 
-              { 
+            }, 
+            { 
                 title: "Opis",
                 style: {
-                  width: 80
+                width: 80
                 } 
-              }, 
-              { title: "Cena"},
-              { title: "Kolicina"},
-              //{ title: "Unit"},
-              { title: "Ukupno"}
+            }, 
+            { title: "Cena"},
+            { title: "Kolicina"},
+            //{ title: "Unit"},
+            { title: "Ukupno"}
             ],
             table: productsForPDF.map((product, index) => ([
                 index + 1,               // Redni broj

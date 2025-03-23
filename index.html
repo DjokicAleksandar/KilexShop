@@ -19,8 +19,31 @@
     <title>Kilex - Store</title>
 </head>
 <body>
-    
-    <div id="loader"> <h1> Učitavanje ... </h1> <div class="loaderAnimation"></div> </div>
+
+    <div class="skeleton-card">
+        <div class="skeleton-card-navbar">
+            <div class="skeleton skeleton-menu"></div>
+            <div class="skeleton skeleton-logo"></div>
+            <div class="skeleton skeleton-cart"></div>
+        </div>
+        
+        <div class="items-skeleton">
+            <div class="item-skeleton">
+                <div class="itemLink-skeleton skeleton-text-link skeleton">
+                    <img class="itemImage" draggable="false">
+                    <div class="discountMessage"> <div class="procenat"></div> </div>
+                </div>
+                <p class="itemBadge-skeleton skeleton-text skeleton">  </p>
+                <h2 class="itemName-skeleton skeleton-text skeleton">  </h2>
+                <div class="prices-skeleton skeleton-text skeleton">
+                    <h3 class="itemPrice-skeleton">  </h3>
+                    <h3 class="itemPriceDiscount-skeleton">  </h3>
+                </div>
+                <div class="addToCartButton-skeleton skeleton-text-button skeleton">  </div>
+            </div>  
+        </div> 
+       
+    </div>
 
     <div class="oNama hide">
         <div class="oNamaContent">
@@ -127,9 +150,9 @@
                 <div class="popUpProductName"> Trepavica 1 </div>
                 <div class="sliderWrapper">
                     <div class="slider">
-                        <img src="Images/Eyelash/K2-kutija-Copy.jpg" id="ImageSlide1">
-                        <img src="Images/Eyelash/K2-cela-Copy.jpg" id="ImageSlide2">
-                        <img src="Images/Eyelash/K2-obe-Copy.jpg" id="ImageSlide3">
+                        <img src="Images/Eyelash/K2-kutija-Copy.jpg" id="ImageSlide1" loading="lazy">
+                        <img src="Images/Eyelash/K2-cela-Copy.jpg" id="ImageSlide2" loading="lazy">
+                        <img src="Images/Eyelash/K2-obe-Copy.jpg" id="ImageSlide3" loading="lazy">
                     </div>
                     <div class="sliderNav">
                         <a href="#ImageSlide1"></a>
@@ -137,6 +160,7 @@
                         <a href="#ImageSlide3"></a>
                     </div>
                 </div>
+                <div class="description"></div>
             </div>
         </div>
 

@@ -4,6 +4,8 @@
         "name": "Tr1",
         "price": 450,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 0
     },
@@ -12,6 +14,8 @@
         "name": "Tr2",
         "price": 550,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 10,
         "available": 210
     },
@@ -20,6 +24,8 @@
         "name": "Tr3",
         "price": 490,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 34
     },
@@ -28,6 +34,8 @@
         "name": "Tr4",
         "price": 500,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 88
     },
@@ -36,6 +44,8 @@
         "name": "Tr5",
         "price": 670,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 123
     },
@@ -44,6 +54,8 @@
         "name": "Tr6",
         "price": 450,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 45
     },
@@ -52,6 +64,8 @@
         "name": "Tr7",
         "price": 550,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 88
     },
@@ -60,6 +74,8 @@
         "name": "Tr8",
         "price": 490,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 65
     },
@@ -68,6 +84,8 @@
         "name": "Tr9",
         "price": 500,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 101
     },
@@ -76,6 +94,8 @@
         "name": "Tr10",
         "price": 670,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 54
     },
@@ -84,6 +104,8 @@
         "name": "Tr11",
         "price": 670,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 99
     },
@@ -92,6 +114,8 @@
         "name": "Tr12",
         "price": 670,
         "image": "Images/Eyelash/K2-Kutija.jpg",
+        "images": ["Images/Eyelash/K2-kutija-Copy.jpg", "Images/Eyelash/K2-cela-Copy.jpg", "Images/Eyelash/K2-obe-Copy.jpg"],
+        "description": "Opis trepavice ...",
         "discount": 0,
         "available": 74
     }
