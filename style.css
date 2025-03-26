@@ -245,6 +245,8 @@ body::-webkit-scrollbar {
     width: max-content;
     height: max-content;
     transition: 1s;
+    z-index: 999;
+    top: 0;
 }
 
 .dropDown.hide{

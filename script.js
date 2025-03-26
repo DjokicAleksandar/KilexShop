@@ -63,27 +63,27 @@ window.addEventListener("resize", promeniSliku);
 
 //offset slike
 
-// window.addEventListener("DOMContentLoaded", function(){
-//     var navbar = document.querySelector(".navbar").offsetHeight;
-//     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
-//     if (window.innerWidth <= 900){
-//         document.querySelector(".dropDown").style.top = navbar + "px";
-//     }
-//     else{
-//         document.querySelector(".dropDown").style.top = 0 + "px";
-//     }
-// })
+window.addEventListener("DOMContentLoaded", function(){
+    var navbar = document.querySelector(".navbar").offsetHeight;
+    //document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+    if (window.innerWidth <= 900){
+        document.querySelector(".dropDown").style.top = navbar + "px";
+    }
+    else{
+        document.querySelector(".dropDown").style.top = 0 + "px";
+    }
+})
 
-// window.addEventListener("resize", function(){
-//     var navbar = document.querySelector(".navbar").offsetHeight;
-//     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
-//     if (window.innerWidth <= 900){
-//         document.querySelector(".dropDown").style.top = navbar + "px";
-//     }
-//     else{
-//         document.querySelector(".dropDown").style.top = 0 + "px";
-//     }
-// })
+window.addEventListener("resize", function(){
+    var navbar = document.querySelector(".navbar").offsetHeight;
+    //document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+    if (window.innerWidth <= 900){
+        document.querySelector(".dropDown").style.top = navbar + "px";
+    }
+    else{
+        document.querySelector(".dropDown").style.top = 0 + "px";
+    }
+})
 
 //--------------------
 
