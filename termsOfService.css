@@ -348,6 +348,11 @@ h4{
     font-weight: 300;
 }
 
+.contactLink{
+    color: #dab684;
+    cursor: pointer;
+}
+
 /* footer */
 
 .footer{

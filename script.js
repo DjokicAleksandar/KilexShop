@@ -42,11 +42,17 @@ function promeniSliku(){
 
     if (window.innerWidth <= 600){
         slikaPrva.src = 'Images/naslovnaSlikaCmp.webp';
-        slikaDruga.src = 'Images/naslovnaSlika2mp.webp';
+        slikaDruga.src = 'Images/naslovnaSlika2Cmp.webp';
+
+        slikaPrva.setAttribute("loading", "lazy"); 
+        slikaDruga.setAttribute("loading", "lazy"); 
     }
     else{
         slikaPrva.src = 'Images/slika1.png';
         slikaDruga.src = 'Images/slika1.png';
+
+        slikaPrva.setAttribute("loading", "lazy"); 
+        slikaDruga.setAttribute("loading", "lazy"); 
     }
 }
 
@@ -57,27 +63,27 @@ window.addEventListener("resize", promeniSliku);
 
 //offset slike
 
-window.addEventListener("DOMContentLoaded", function(){
-    var navbar = document.querySelector(".navbar").offsetHeight;
-    document.querySelector(".imageContainer").style.marginTop = navbar + "px";
-    if (window.innerWidth <= 900){
-        document.querySelector(".dropDown").style.top = navbar + "px";
-    }
-    else{
-        document.querySelector(".dropDown").style.top = 0 + "px";
-    }
-})
+// window.addEventListener("DOMContentLoaded", function(){
+//     var navbar = document.querySelector(".navbar").offsetHeight;
+//     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+//     if (window.innerWidth <= 900){
+//         document.querySelector(".dropDown").style.top = navbar + "px";
+//     }
+//     else{
+//         document.querySelector(".dropDown").style.top = 0 + "px";
+//     }
+// })
 
-window.addEventListener("resize", function(){
-    var navbar = document.querySelector(".navbar").offsetHeight;
-    document.querySelector(".imageContainer").style.marginTop = navbar + "px";
-    if (window.innerWidth <= 900){
-        document.querySelector(".dropDown").style.top = navbar + "px";
-    }
-    else{
-        document.querySelector(".dropDown").style.top = 0 + "px";
-    }
-})
+// window.addEventListener("resize", function(){
+//     var navbar = document.querySelector(".navbar").offsetHeight;
+//     document.querySelector(".imageContainer").style.marginTop = navbar + "px";
+//     if (window.innerWidth <= 900){
+//         document.querySelector(".dropDown").style.top = navbar + "px";
+//     }
+//     else{
+//         document.querySelector(".dropDown").style.top = 0 + "px";
+//     }
+// })
 
 //--------------------
 
@@ -368,10 +374,8 @@ const changeQuantity = (productId, type) => {
     addCartToHTML();
 }
 
-//cartBtn je ikonica korpe
 //funkcija za dodavanje animacije za korpu
 function animateCart() {
-    // Dodaj klasu za animaciju
     cartBtn.classList.add("cartAnimation");
   
     // kraj animacije
@@ -392,7 +396,7 @@ cartBtn.addEventListener("animationend", () => {
     cartBtn.classList.remove("cartAnimation");
 });
 
-
+//MAIN
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addToCartButton')){

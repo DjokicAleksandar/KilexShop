@@ -185,6 +185,7 @@ function ClearInputs() {
     })
 
     localStorage.removeItem("selectedProducts");
+    localStorage.removeItem("cart");
     selectedProducts = [];
 }
 //---------------
@@ -528,7 +529,7 @@ async function GeneratePDF() {
             address: "Srbija, Stajkovce",
             phone: "+381 62 176 7144",
             email: "kilexxx0@gmail.com",
-            website: "www.kilex.com",
+            website: "www.kilex.rs",
         },
         contact: {
             label: "Faktura za:",
@@ -593,7 +594,7 @@ async function GeneratePDF() {
                 }
             }],
             invDescLabel: "Napomena: ",
-            invDesc: "U slucaju reklamacije, molimo Vas da nas kontaktirate na kilexxx0@gmail.com ili putem Whatsapp ili Vibera na broj +381 62 176 7144",
+            invDesc: "U slucaju reklamacije, molimo Vas da nas kontaktirate na kilexxx0@gmail.com ili putem Whatsapp ili Vibera na broj +381621767144",
         },
         footer: {
             text: "Faktura je generisana na racunaru i validna je bez potpisa ili pecata.",
