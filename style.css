@@ -68,7 +68,7 @@ body::-webkit-scrollbar {
 .skeleton-card-image {
     margin-top: 100px;
     width: 80%;
-    min-height: 50%;
+    min-height: 60%;
     border-radius: 10px;
 }
 
@@ -183,6 +183,24 @@ body::-webkit-scrollbar {
 
 .oNamaContent::-webkit-scrollbar{
     display: none;
+}
+
+.oNama h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dab684;
+}
+
+.oNama h3{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dab684;
+}
+
+.oNama h4{
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .oNamaNavbar{

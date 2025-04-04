@@ -319,7 +319,9 @@ async function Validate()
                 email: email,
                 address: addressForPDF,
                 phone: phone,
-                date: date,
+                day: day,
+                month: month,
+                year: year,
                 time: time,
                 products: productsForEmail,
                 totalPrice: totalPriceFormatedGlobal,
@@ -328,7 +330,7 @@ async function Validate()
           
             try {
                 // https://kilexshop.onrender.com/send-email , http://localhost:3000/send-email
-                const response = await fetch("https://kilexshop.onrender.com/send-email", { 
+                const response = await fetch("http://localhost:3000/send-email", { 
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(orderData),

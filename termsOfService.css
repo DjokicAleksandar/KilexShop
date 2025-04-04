@@ -91,6 +91,24 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+.oNama h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dab684;
+}
+
+.oNama h3{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dab684;
+}
+
+.oNama h4{
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .oNamaNavbar{
     width: 100%;
     top: 0;

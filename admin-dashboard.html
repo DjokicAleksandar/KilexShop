@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin dashboard</title>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dateTime{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #salesData{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #search{
+            font-size: larger;
+        }
+
+        #logoutBtn{
+            font-size: larger;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Pregled prodaje</h2>
+    <div class="dateTime">
+        <label for="day"> Dan: </label>
+        <input type="text" id="day">
+
+        <label for="month"> Mesec: </label>
+        <input type="text" id="month">
+
+        <label for="year"> Godina: </label>
+        <input type="text" id="year">
+
+        <br>
+
+        <button id="search" onclick="Search()"> Pretraži </button>
+    </div>
+    <div id="salesData"></div>
+    <div id="totalSales"></div>
+    <button id="logoutBtn">Izloguj se</button>
+
+    <script>
+        let arr;
+        let totalSales = 0;
+        const salesData = document.getElementById("salesData");
+
+        function loadHTML() {
+            arr.forEach(element => {
+                let newProduct = document.createElement("div");
+                newProduct.classList.add("product")
+
+                let name = document.createElement("div");
+                name.innerText = element.name + " x " + element.quantity;
+
+                let price = document.createElement("div");
+                price.innerText = element.price * element.quantity + " RSD";
+
+                let date = document.createElement("div");
+                date.innerText = element.day + " / " + element.month + " / " + element.year;
+
+                totalSales += element.price * element.quantity;
+
+                newProduct.appendChild(name);
+                newProduct.appendChild(price);
+                newProduct.appendChild(date);
+
+                salesData.appendChild(newProduct);
+                document.getElementById("totalSales").innerText =  "Ukupno: " + totalSales + " RSD";
+            });
+        }
+
+        async function loadSales() {
+            const token = localStorage.getItem("jwt");
+            const response = await fetch("http://localhost:3000/admin-dashboard", {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
+            if (response.status === 403) {
+                window.location.href = "admin-login.html";
+                return;
+            }
+
+            const data = await response.json();
+
+            arr = data.sales;
+
+            loadHTML();
+        }
+
+        loadSales();
+
+        function Filter(day, month, year) {
+            return arr.filter(n => {
+                if (day && n.day != Number(day)) return false;
+                if (month && n.month != Number(month)) return false;
+                if (year && n.year != Number(year)) return false;
+                return true;
+            });
+        }
+
+        function Search() {
+            totalSales = 0;
+
+            const day = document.getElementById("day").value;
+            const month = document.getElementById("month").value;
+            const year = document.getElementById("year").value;
+
+            if (!day && !month && !year) {
+                loadHTML();
+            }
+
+            salesData.innerText = "";
+
+            Filter(day, month, year).forEach(element => {
+                let newProduct = document.createElement("div");
+                newProduct.classList.add("product")
+
+                let name = document.createElement("div");
+                name.innerText = element.name + " x " + element.quantity;
+
+                let price = document.createElement("div");
+                price.innerText = element.price * element.quantity + " RSD";
+
+                let date = document.createElement("div");
+                date.innerText = element.day + " / " + element.month + " / " + element.year;
+
+                totalSales += element.price * element.quantity;
+
+                newProduct.appendChild(name);
+                newProduct.appendChild(price);
+                newProduct.appendChild(date);
+
+                salesData.appendChild(newProduct);
+                document.getElementById("totalSales").innerText =  "Ukupno: " + totalSales + " RSD";
+            })
+        }
+
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+            await fetch("http://localhost:3000/admin-logout", { method: "POST" });
+            window.location.href = "index.html";
+        })
+        
+    </script>
+</body>
+</html>
